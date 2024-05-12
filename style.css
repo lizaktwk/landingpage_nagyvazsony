@@ -1,0 +1,35 @@
+/* html { overflow-y: scroll; } */
+body {
+    margin: 0;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.section {
+    display: flex;
+    min-height: 3000vh;
+    position: relative;
+
+}
+
+#image-container {
+    position: relative;
+    display: flex;
+
+}
+
+#mainImg {
+    height: 100vh;
+    position: fixed;
+
+    height: 100vh;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center the image */
+
+}
+
