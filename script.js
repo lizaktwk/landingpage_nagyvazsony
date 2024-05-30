@@ -1,19 +1,20 @@
+
 // Creating the BG image sequence (array)
 function imageCache(base, firstNum, lastNum) {
     this.cache = [];
-    let img;
+    let frames;
     for (let i = firstNum; i <= lastNum; i++) {
-        img = new Image();
+        frames = new Image();
         if(i<=9) {
-            img.src = base + "00" + i + ".png";
+            frames.src = base + "00" + i + ".png";
         }
         else if (i<=99) {
-            img.src = base + "0" + i + ".png";
+            frames.src = base + "0" + i + ".png";
         }
         else {
-            img.src = base + i + ".png";
+            frames.src = base + i + ".png";
         }
-        this.cache.push(img);
+        this.cache.push(frames);
     }
 }
 
@@ -65,27 +66,4 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
   }
 
-// Function to calculate total height of all images for dynamic page height
-// function calculateTotalImageHeight() {
-//     let totalHeight = 0;
-//     myCache.cache.forEach(function(image) {
-//         totalHeight += image.height; // Assuming all images have the same height
-//     });
-//     console.log("total Height: " + totalHeight);
-//     return totalHeight;
-
-// }
-
-// Set the height of the body or container element to the total height of all images
-//document.getElementsByClassName("section").style.height = calculateTotalImageHeight() + 'vh';
-//document.body.style.height = calculateTotalImageHeight() + 'px';
-
-//OLD, but Working
-//works with up and down scroll (not considering scroll direction)
-// Add scroll event listener
-// window.addEventListener('scroll', function () {
-//     // Increment current image index
-//     currentImageIndex++;
-//     // Update the displayed image
-//     updateImage();
-// });
+  

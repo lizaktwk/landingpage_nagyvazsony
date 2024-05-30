@@ -1,0 +1,30 @@
+html, body {
+    height: 100%; /**/
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+#image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#mainImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the container without distortion */
+    position: absolute; /* Position the image absolutely to fill the container */
+}
