@@ -1,30 +1,156 @@
+html {
+    scroll-behavior: auto;
+}
+
 html, body {
-    height: 100%; /**/
+    overflow-x: hidden;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .section {
-    width: 100%;
-    height: 100%;
     display: flex;
     position: relative;
+    width: 100%;
 }
 
 #image-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    display: flex;
+    width: 100%;
 }
 
 #mainImg {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This ensures the image covers the container without distortion */
-    position: absolute; /* Position the image absolutely to fill the container */
+    position: fixed;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#table-content {
+    visibility: hidden;
+}
+
+#welcome {
+    font-family: "adorn-condensed-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5em;
+    color: #D2971A;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: fixed; /* Make sure it's fixed to the viewport */
+    top: 25%; /* Adjust this to place it correctly */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 100%;
+
+}
+
+#welcome-text {
+    width: 60vw;
+    width: 70%;
+    height: fit-content;
+    /* background-color: rgba(0,0,0,0.5); */
+    font-family: "Merriweather", serif;
+    font-style: normal;
+    font-size: 0.4em;
+    /* font-size: 2vw; */
+    color: #D1B373;
+    text-align: center;
+    text-shadow: 2px 2px rgba(0,0,0,0.3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: fixed; /* Make sure it's fixed to the viewport */
+    top: 100%;
+    padding: 200px;
+    padding: 1vw;
+    
+
+}
+@media screen and (max-width: 1024px){
+    #welcome-text {
+        width: 96%;
+        top: 90%;
+        height: fit-content;
+        font-size: 0.4em;
+        
+    }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    #welcome {
+        font-size: 30px;
+        font-size: 8vw;
+        font-size: 4em;
+    }
+
+    #welcome-text {
+        width: 96%;
+        font-size: 0.32em;
+        
+    }
+
+  }
+
+#icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: fixed; /* Make sure it's fixed to the viewport */
+    top: 10%; /* Adjust this to place it correctly */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 100%;
+}
+
+.icon {
+    width: 45%;
+    height: 100px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+#overlay-button {
+    position: fixed;
+    z-index: 2;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
