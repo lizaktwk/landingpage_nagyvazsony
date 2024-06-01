@@ -1,17 +1,14 @@
-
 // Creating the BG image sequence (array)
 function imageCache(base, firstNum, lastNum) {
     this.cache = [];
     let frames;
     for (let i = firstNum; i <= lastNum; i++) {
         frames = new Image();
-        if(i<=9) {
+        if (i <= 9) {
             frames.src = base + "00" + i + ".png";
-        }
-        else if (i<=99) {
+        } else if (i <= 99) {
             frames.src = base + "0" + i + ".png";
-        }
-        else {
+        } else {
             frames.src = base + i + ".png";
         }
         this.cache.push(frames);
@@ -20,50 +17,51 @@ function imageCache(base, firstNum, lastNum) {
 
 let myCache = new imageCache('./Test-Video-Web-PNGs/Test-Video', 0, 479);
 
+// Set the height of the document based on the number of images
+document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight}px`;
+
 // Variable to keep track of the current image index
 let currentImageIndex = 0;
-
 
 // Function to update the displayed image
 function updateImage() {
     // Check if the current index is within bounds
     if (currentImageIndex >= 0 && currentImageIndex < myCache.cache.length) {
         let currentImage = myCache.cache[currentImageIndex];
+        let mainImg = document.getElementById('mainImg');
         // Display the image (replace 'imageContainer' with your image container's ID or class)
-        document.getElementById('mainImg').src = currentImage.src;
+        mainImg.src = currentImage.src;
+        // Set the z-index of the currently displayed image
+        mainImg.style.zIndex = 0;
     }
 }
 
-// Implementing backwards/forwards animation based on scroll direction (source: https://codepen.io/lehollandaisvolant/pen/ryrrGx)
-// Initial state
-let scrollPos = 0;
-// adding scroll event
-window.addEventListener('scroll', function(){
-  // detects new state and compares it with the new one
-  if ((document.body.getBoundingClientRect()).top > scrollPos) { // Scroll UP Movement
-    if(currentImageIndex == 0) {
-        return;
-    }
-    // Decrease current image index
-    currentImageIndex--;
-    // Update the displayed image
-    updateImage();
-    scrollPos = (document.body.getBoundingClientRect()).top;
+// Implementing backwards/forwards animation based on scroll direction
+window.addEventListener('scroll', function () {
+    // Calculating the maximum vertical distance that can be scrolled
+    let maxScrollTop = document.body.scrollHeight - window.innerHeight; // total document height - visible area height
+    // Calculate the fraction of the scroll position
+    let scrollFraction = window.scrollY / maxScrollTop; // represents how much of the scrollable distance has been scrolled (value between 0 and 1)
+    
+    // Calculate the new image index with finer granularity
+    let newIndex = Math.min(
+        myCache.cache.length - 1,
+        Math.floor(scrollFraction * myCache.cache.length)
+    );
 
-  }
-  else { // Scroll DOWN Movement --> reverse the animation
-    // Increment current image index
-    currentImageIndex++;
-    // Update the displayed image
-    updateImage();
-	// saves the new position for iteration.
-	scrollPos = (document.body.getBoundingClientRect()).top;
-  }
+    // Only update if the index has changed
+    if (newIndex !== currentImageIndex) {
+        currentImageIndex = newIndex;
+        // print the current image index
+        console.log(currentImageIndex);
+        updateImage();
+    }
 });
 
 // reset animation and scroll-position on reload
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
-  }
+};
 
-  
+
+

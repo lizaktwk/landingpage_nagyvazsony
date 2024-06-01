@@ -26,6 +26,7 @@ body {
     flex-wrap: wrap; /* Allow items to wrap into multiple rows */
     justify-content: space-around; /* Align items with space around them */
     position:fixed;
+    z-index: 1;
   }
   
   .icon {
@@ -34,6 +35,7 @@ body {
     background-color: #ccc; /* Background color for visualization */
     margin-bottom: 10px; /* Add margin for spacing between items */
     position: fixed;
+    z-index: 1;
   }
 
 
