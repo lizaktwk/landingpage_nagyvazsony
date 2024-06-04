@@ -22,11 +22,6 @@ body {
     /* Can be removed */
 }
 
-/* body.stop-transition * {
-    transition: none !important;
-  } */
-
-
 p {
     font-family: "Merriweather", serif;
     font-style: normal;
@@ -106,33 +101,63 @@ p {
     top: 100%;
     padding: 200px;
     padding: 1vw;
-
-
 }
 
-
-#icon-container {
-    display: flex;
+.icon-container-1 {
+    /* display: flex; */
     position: fixed;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100vw;
     height: 100vh;
-    border: 3px solid #000;
+    /* border: 30px solid #000; */
     left: 0;
+    transition: left 0.5s ease-in-out;
 }
 
-/* .icon {
+#icon-1 {
     border: 1px solid red;
     display: flex;
-    flex-direction: column;
+    position: relative;
+    flex-direction: column; 
     text-align: center;
     width: 400px;
     /* width: 20vw; */
-    /* Adjust the width of icons */
-    /* height: fit-content;
-    
+    height: fit-content;
+    /* left: 200px; */
+    /* left: 10vw; */
+    right: -10vw;
+}
 
-} */
+#feketesereg {
+    transition: width 0.5s ease-in-out;
+}
+
+#icon-2 {
+    border: 1px solid red;
+    display: flex;
+    position: relative;
+    flex-direction: column; 
+    text-align: center;
+    width: 400px;
+    /* width: 20vw; */
+    height: fit-content;
+    /* left: 70vw; */
+    right: -70vw;
+    bottom: 25vh;
+    transition: left 0.5s ease-in-out, width 0.5s ease-in-out; 
+}
+
+#monastary {
+    transition: width 0.5s ease-in-out;
+}
+
+.label {
+    font-family: "adorn-condensed-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4em;
+    color: #000;
+}
 
 .hoverIcon {
     transition: transform 0.5s;
@@ -143,97 +168,10 @@ p {
     transform: scale(1.1);
 }
 
-.icon img {
-    z-index: 5;
-}
-
-.icon h2 {
-    font-family: "adorn-condensed-sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 4em;
-    color: #000;
-}
-
-/* Positioning the #feketesereg icon individually */
-#feketesereg {
-    display: flex;
-    position: fixed;
-    justify-content: space-between;
-    width: 100vw;
-    height: 100vh;
-    border: 30px solid #000;
-    left: 0;
 
 
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 400px;
-    /* width: 20vw; */
-    /* Adjust the width of icons */
-    height: fit-content;
-    
-    
+.sidebar-left{
 
-    position: relative;
-    left: 200px;
-    transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
-    
-    /* left will be changed to 20vw in script */
-    /* width will be changed to 20vw in script */
-}
-
-#monastery {
-    display: flex;
-    position: fixed;
-    justify-content: space-between;
-    width: 100vw;
-    height: 100vh;
-    border: 3px solid #000;
-    left: 0;
-
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 400px;
-    /* width: 20vw; */
-    /* Adjust the width of icons */
-    height: fit-content;
-    
-
-    /* Positioning the #monastery icon individually */
-    position: relative;
-    left: -200px;
-    top: 290px;
-    transition: left 0.5s ease-in-out;
-    /* left will be changed to -80vw in script for #feketesereg; */
-    /* left: -80vw; */
-    /* width will be changed to 20vw in script */
-    /* left will be changed to 0 in script for #monastery */
-    /* left: 0; */
-    
-    
-}
-
-/* .sidebar-container {
-    display: flex; */
-    /* justify-content: center; */
-    /* align-items: center;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0; */
-    /* left will be set from -100% to 0 */
-    /* left: -100%; */
-    /* z-index: 2; */
-    /* background-color: red; */
-    /* transition: left 0.5s ease-in-out;
-} */
-
-.sidebar-container-toRight {
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -242,31 +180,13 @@ p {
     position: fixed;
     top: 0;
     /* left will be set from -100% to 0 */
-    left: -100%;
+    left: 100%;
     /* z-index: 2; */
     /* background-color: red; */
     transition: left 0.5s ease-in-out;
     z-index: 2;
-}
-
-.sidebar-container-toLeft {
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    /* left will be set from -100% to 0 for #feketesereg*/
-    /* left will be set from to 20% for #monastery */
-    left: 100%;
-    /* z-index: 3; */
-    /* background-color: red; */
-    transition: left 0.5s ease-in-out;
-    z-index: 3;
 
 }
-
 
 /* .sidebar-content {
     background-color: rgba(0, 0, 0, 0.4);
@@ -325,14 +245,6 @@ p {
 
 }
 
-
-/* .sidebar-content {
-    background-color: #888;
-    width: 60vw;
-    height: auto;
-    
-
-} */
 
 
 
@@ -403,103 +315,4 @@ a:hover {
 .active,
 .dot:hover {
     background-color: #b58318;
-}
-
-/* @media screen and (max-width: 1436px) { */
-
-    /*war vorher 1024px*/
-    /* #welcome-text {
-        width: 96%;
-        top: 90%;
-        height: fit-content;
-        font-size: 0.4em;
-
-    }
-
-    .icon {
-        width: 350px;
-
-    }
-
-    .icon h2 {
-        font-size: 3.5em;
-    }
-
-    #feketesereg {
-        left: 0; */
-        /* left: 0;
-        margin-left: 0;
-        margin-right: 0; */
-    /* }
-
-    #monastery {
-        top: 410px;
-        left: -200px;
-    }
-
-    .sidebar-content {
-        flex-direction: column;
-    }
-
-    .sidebar-content p {
-        padding-top: 30px;
-    }
-} */
-
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-/* @media screen and (max-width: 600px) {
-    #welcome {
-        font-size: 30px;
-        font-size: 8vw;
-        font-size: 4em;
-    }
-
-    #welcome-text {
-        width: 96%;
-        font-size: 0.32em;
-
-    }
-
-    .icon {
-        width: 300px;
-
-    }
-
-    .icon h2 {
-        font-size: 3.5em;
-    }
-
-    #feketesereg {
-        left: 0;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    #monastery {
-        top: 420px;
-        left: -90px;
-    }
-
-    .sidebar-content {
-        flex-direction: column;
-    }
-} */
-
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(241, 241, 241, 0.2);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 6px;
-    border: 3px solid #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
 }

@@ -31,18 +31,16 @@ function updateImage() {
         // show welcome table content at specific image index
         if (currentImageIndex >= 129 && currentImageIndex <= 131) {
             showTableContent('welcome');
-            showTableContent('welcome-text');
         } else {
             hideTableContent('welcome');
-            hideTableContent('welcome-text');
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
         if (currentImageIndex >= 151 && currentImageIndex <= 154) {
-            showTableContent('icon-container');
-            console.log("show icon container");
+            showTableContent('icon-container-1');
+            showTableContent('sidebar-left');
         } else {
-            hideTableContent('icon-container');
+            hideTableContent('icon-container-1');
         }
     }
 }
@@ -64,37 +62,88 @@ window.addEventListener('scroll', function () {
 //     window.scrollTo(0, 0);
 // };
 
+function showTableContent(content) {
+    // let element = document.getElementById(content);
+    let classElement = document.querySelector(`.${content}`);
+    classElement.style.visibility = 'visible';
 
-
-// display div with id when specific mainImg is displayed
-// function showTableContent(contentId) {
-//     const tableContent = document.getElementById('table-content');
-//     const children = tableContent.children;
-
-//     for (let i = 0; i < children.length; i++) {
-//         const child = children[i];
-//         if (child.id === contentId) {
-//             child.style.visibility = "visible";
-//         } else {
-//             child.style.visibility = "hidden";
-//         }
-//     }
-// }
-function showTableContent(contentId) {
-    let element = document.getElementById(contentId);
-    element.style.visibility = 'visible';
 }
 
-function hideTableContent(id) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.style.visibility = 'hidden';
+function hideTableContent(content) {
+    let classElement = document.querySelector(`.${content}`);
+    if (classElement) {
+        classElement.style.visibility = 'hidden';
     }
 }
 
-// print viewport width
-console.log("viewport width: " + window.innerWidth);
+let isSidebarVisible = false;
+function moveIcons(iconCont, iconID) {
+    const iconContainer = document.querySelector(`.${iconCont}`);
+    const icon = document.querySelector(iconID);
+    console.log("icon: ", icon);
 
+    if (icon.id === 'feketesereg') {
+        console.log('icon-1 pressed');
+        if (!isSidebarVisible) {
+            icon.style.width = '20vw'; // Adjust as needed   
+            iconContainer.style.left = '65vw'; // Adjust as needed
+            moveSidebar('sidebar-left', '#contentFeketeSereg');
+            
+        } else {
+            icon.style.width = "400px";
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-left', '#contentFeketeSereg');
+        }
+
+    }
+
+    else if (icon.id === 'monastary') {
+        console.log('icon-2 pressed');
+        if (!isSidebarVisible) {
+            iconContainer.style.left = '-74vw'; // Adjust as needed
+            icon.style.width = '20vw'; // Adjust as needed   
+        } else {
+            iconContainer.style.left = '0';
+            icon.style.width = "400px";
+        }
+
+    }
+
+    isSidebarVisible = !isSidebarVisible;
+}
+
+
+let isSidebarVisible1 = false;
+function moveSidebar(sidebar, textID) {
+    let sidebarContainer = document.querySelector(`.${sidebar}`);
+    let contentID = document.getElementById(textID);
+    console.log("contentID: ", contentID);
+
+    if (contentID === 'contentFeketeSereg') {
+        if (!isSidebarVisible1) {
+            sidebarContainer.style.left = '0'; // Adjust as needed
+            console.log("sidebar moved to 0");
+        } else {
+            sidebarContainer.style.left = '100%';
+            console.log("sidebar moved to 100");
+        }
+
+    }
+
+    else if (contentID === 'monastary') {
+        console.log('icon-2 pressed');
+        if (!isSidebarVisible1) {
+            sidebarContainer.style.left = '-74vw'; // Adjust as needed
+            contentID.style.width = '20vw'; // Adjust as needed   
+        } else {
+            sidebarContainer.style.left = '0';
+            contentID.style.width = "400px";
+        }
+
+    }
+
+    isSidebarVisible1 = !isSidebarVisible1;
+}
 
 
 // text carousel
@@ -103,7 +152,7 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
     // Prevent slide index from moving beyond the first or last slide
-    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) || 
+    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) ||
         (n < 0 && slideIndex > 1)) {
         showSlides(slideIndex += n);
     }
@@ -167,15 +216,36 @@ function changeButtonStyle() {
 }
 
 
-// Slide in of the text content
-function showSidebar() {
-    let iconContainer = document.querySelector('#icon-container');
-    // set z-index of iconContainer to 3
-    iconContainer.style.zIndex = 3;
-    const iconFeketeSereg = document.querySelector('#feketesereg');
-    const iconMonastery = document.querySelector('#monastery');
-    const sidebar = document.querySelector('.sidebar-container');
-    sidebar.style.left = '0';
-    iconFeketeSereg.style.left = '79vw';
-    iconMonastery.style.left = '100vw';
-}
+// let isSidebarVisible = false;
+// function showSidebar(iconTag, otherIconTag) {
+//     const icon = document.querySelector(iconTag);
+//     const otherIcon = document.querySelector(otherIconTag);
+//     const sidebarToRight = document.querySelector('.sidebar-container-toRight');
+//     const sidebarToLeft = document.querySelector('.sidebar-container-toLeft');
+
+//     if (iconTag === '#feketesereg') {
+//         if (!isSidebarVisible) {
+//             sidebarToRight.classList.add('sidebar-visible');
+//             icon.style.left = '79vw'; // Adjust as needed
+//             icon.style.width = '20vw'; // Adjust as needed
+//         } else {
+//             sidebarToRight.classList.remove('sidebar-visible');
+//             icon.style.left = '0';
+//             icon.style.width = "400px";
+//         }
+//     }
+
+//     if (iconTag === '#monastery') {
+//         if (!isSidebarVisible) {
+//             sidebarToLeft.classList.add('sidebar-visible');
+//             icon.style.left = '0'; // Adjust as needed
+//             icon.style.width = '20vw'; // Adjust as needed
+//         } else {
+//             sidebarToLeft.classList.remove('sidebar-visible');
+//             icon.style.left = '-200px';
+//             icon.style.width = "400px";
+//         }
+//     }
+
+//     isSidebarVisible = !isSidebarVisible;
+// }
