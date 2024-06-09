@@ -26,8 +26,6 @@ function updateImage() {
         mainImg.src = currentImage.src;
         mainImg.style.zIndex = 0;
 
-        console.log("current Index: " + currentImageIndex);
-
         // show welcome table content at specific image index
         if (currentImageIndex >= 129 && currentImageIndex <= 131) {
             showTableContent('welcome');
@@ -77,19 +75,17 @@ function hideTableContent(content) {
 
 let isIconMoved = false;
 function moveIcons(iconCont, iconID) {
-    const iconContainer = document.querySelector(`.${iconCont}`);
-    const iconIMG = document.querySelector(iconID);
+    let iconContainer = document.querySelector(`.${iconCont}`);
+    let iconIMG = document.querySelector(iconID);
     let iconParent = iconIMG.parentNode;
 
     if (iconIMG.id === 'feketesereg') {
         if (!isIconMoved) {
             iconContainer.style.left = '68vw';
             moveSidebar('sidebar-left', 'contentFeketeSereg');
-            // iconParent.classList.add('icon-foreground'); // Add this
         } else {
             iconContainer.style.left = '0';
             moveSidebar('sidebar-left', 'contentFeketeSereg');
-            // iconParent.classList.remove('icon-foreground');
         }
     }
 
@@ -110,7 +106,7 @@ function moveIcons(iconCont, iconID) {
 
 let isSidebarVisible = false;
 function moveSidebar(sidebar, textID) {
-    
+
     let sidebars = document.getElementsByClassName(sidebar);
 
     // loop through each element with the class name left-sidebar or right-sidebar
@@ -157,7 +153,7 @@ function moveSidebar(sidebar, textID) {
 
         }
     }
-    
+
 
 }
 
@@ -198,7 +194,7 @@ function initCarousel(carousel) {
     }
 
     function showSlides(n) {
-        
+
         if (n > slides.length) { slideIndex = slides.length; }
         if (n < 1) { slideIndex = 1; }
 
@@ -241,15 +237,3 @@ function initCarousel(carousel) {
 
 document.querySelectorAll('.sidebar-content').forEach(initCarousel);
 
-
-function setButtonZIndex() {
-    const previousButtons = document.getElementsByClassName('previous');
-    const nextButtons = document.getElementsByClassName('next');
-    
-    for (let button of previousButtons) {
-        button.style.zIndex = '10';
-    }
-    for (let button of nextButtons) {
-        button.style.zIndex = '10';
-    }
-}

@@ -108,15 +108,14 @@ p {
     /* justify-content: space-between; */
     width: 100vw;
     height: 100vh;
-    border: 3px solid #000;
+    border: 3px solid green;
     left: 0;
     transition: left 0.5s ease-in-out;
-    z-index: 3;
 
-    
 }
 
 #icon-1 {
+    z-index: 3;
     border: 1px solid red;
     display: flex;
     position: relative;
@@ -128,13 +127,14 @@ p {
     /* left: 200px; */
     /* left: 10vw; */
     right: -10vw;
-    z-index: 3;
 
 }
 
-/* #feketesereg {
-    transition: width 0.5s ease-in-out;
-} */
+#feketesereg {
+    z-index: 2;
+    position: relative;
+    /* transition: width 0.5s ease-in-out; */
+}
 
 #icon-2 {
     border: 1px solid red;
@@ -173,9 +173,7 @@ p {
     transform: scale(1.1);
 }
 
-.icon-foreground {
-    z-index: 4;
-}
+
 
 
 
@@ -289,7 +287,6 @@ a:hover {
 }
 
 .next {
-    z-index: 20;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -306,12 +303,12 @@ a:hover {
 /* Define styles for button states */
 .arrow-default {
     background-color: #D2971A;
-    z-index: 20;
+
 }
 
 .arrow-disabled {
     background-color: #D1B373;
-    z-index: 20;
+
 }
 
 /* The dots/bullets/indicators */
