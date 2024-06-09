@@ -31,18 +31,16 @@ function updateImage() {
         // show welcome table content at specific image index
         if (currentImageIndex >= 129 && currentImageIndex <= 131) {
             showTableContent('welcome');
-            showTableContent('welcome-text');
         } else {
             hideTableContent('welcome');
-            hideTableContent('welcome-text');
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
         if (currentImageIndex >= 151 && currentImageIndex <= 154) {
-            showTableContent('icon-container');
-            console.log("show icon container");
+            showTableContent('icon-container-1');
+            // showTableContent('sidebar-left');
         } else {
-            hideTableContent('icon-container');
+            hideTableContent('icon-container-1');
         }
     }
 }
@@ -56,7 +54,6 @@ window.addEventListener('scroll', function () {
         currentImageIndex = newIndex;
         console.log(currentImageIndex);
         updateImage();
-        // setZIndex();
     }
 });
 
@@ -64,118 +61,195 @@ window.addEventListener('scroll', function () {
 //     window.scrollTo(0, 0);
 // };
 
+function showTableContent(content) {
+    // let element = document.getElementById(content);
+    let classElement = document.querySelector(`.${content}`);
+    classElement.style.visibility = 'visible';
 
-
-// display div with id when specific mainImg is displayed
-// function showTableContent(contentId) {
-//     const tableContent = document.getElementById('table-content');
-//     const children = tableContent.children;
-
-//     for (let i = 0; i < children.length; i++) {
-//         const child = children[i];
-//         if (child.id === contentId) {
-//             child.style.visibility = "visible";
-//         } else {
-//             child.style.visibility = "hidden";
-//         }
-//     }
-// }
-function showTableContent(contentId) {
-    let element = document.getElementById(contentId);
-    element.style.visibility = 'visible';
 }
 
-function hideTableContent(id) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.style.visibility = 'hidden';
+function hideTableContent(content) {
+    let classElement = document.querySelector(`.${content}`);
+    if (classElement) {
+        classElement.style.visibility = 'hidden';
     }
 }
 
-// print viewport width
-console.log("viewport width: " + window.innerWidth);
+let isIconMoved = false;
+function moveIcons(iconCont, iconID) {
+    const iconContainer = document.querySelector(`.${iconCont}`);
+    const iconIMG = document.querySelector(iconID);
+    let iconParent = iconIMG.parentNode;
 
+    if (iconIMG.id === 'feketesereg') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '68vw';
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
+            // iconParent.classList.add('icon-foreground'); // Add this
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
+            // iconParent.classList.remove('icon-foreground');
+        }
+    }
+
+    else if (iconIMG.id === 'monastary') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '-70vw';
+            moveSidebar('sidebar-right', 'contentMonastary');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-right', 'contentMonastary');
+        }
+
+    }
+
+    isIconMoved = !isIconMoved;
+}
+
+
+let isSidebarVisible = false;
+function moveSidebar(sidebar, textID) {
+    
+    let sidebars = document.getElementsByClassName(sidebar);
+
+    // loop through each element with the class name left-sidebar or right-sidebar
+    for (let i = 0; i < sidebars.length; i++) {
+        let sidebarContainer = sidebars[i];
+
+        // access child elements of sidebarContainer
+        let childElements = sidebarContainer.children;
+
+        // loop through each child element of sidebarContainer
+        for (let j = 0; j < childElements.length; j++) {
+            // get the id of the child element
+            let contentID = childElements[j].id;
+            console.log("contentID: " + contentID);
+
+            // check if the contentID matches the textID to show the right content
+            if (contentID === textID) {
+
+                if (textID === 'contentFeketeSereg') {
+                    console.log("contentFeketeSereg");
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '0'; // Adjust as needed
+                    } else {
+                        sidebarContainer.style.left = '-100%';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentMonastary') {
+                    console.log("contentMonastary");
+
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        console.log("sidebar moved to 0");
+                    } else {
+                        sidebarContainer.style.left = '100%';
+                        console.log("sidebar moved to 100");
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+            }
+
+        }
+    }
+    
+
+}
 
 
 // text carousel
-let slideIndex = 1;
-showSlides(slideIndex);
+function initCarousel(carousel) {
+    let slideIndex = 1;
+    const slides = carousel.getElementsByClassName("textSlides");
+    const dots = carousel.getElementsByClassName("dot");
+    const previousButton = carousel.getElementsByClassName('previous')[0];
+    const nextButton = carousel.getElementsByClassName('next')[0];
 
-function plusSlides(n) {
-    // Prevent slide index from moving beyond the first or last slide
-    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) || 
-        (n < 0 && slideIndex > 1)) {
-        showSlides(slideIndex += n);
+    showSlides(slideIndex);
+
+    previousButton.onclick = function (event) {
+        event.preventDefault();
+        plusSlides(-1);
+    };
+    nextButton.onclick = function (event) {
+        event.preventDefault();
+        plusSlides(1);
+    };
+
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].onclick = function () {
+            currentSlide(i + 1);
+        };
+    }
+
+    function plusSlides(n) {
+        if ((n > 0 && slideIndex < slides.length) || (n < 0 && slideIndex > 1)) {
+            showSlides(slideIndex += n);
+        }
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        
+        if (n > slides.length) { slideIndex = slides.length; }
+        if (n < 1) { slideIndex = 1; }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+
+        changeButtonStyle();
+    }
+
+    function changeButtonStyle() {
+        previousButton.classList.remove('arrow-disabled');
+        previousButton.classList.add('arrow-default');
+        nextButton.classList.remove('arrow-disabled');
+        nextButton.classList.add('arrow-default');
+
+        if (slideIndex === 1) {
+            previousButton.classList.remove('arrow-default');
+            previousButton.classList.add('arrow-disabled');
+            previousButton.style.pointerEvents = 'none';
+        } else {
+            previousButton.style.pointerEvents = 'auto';
+        }
+
+        if (slideIndex === slides.length) {
+            nextButton.classList.remove('arrow-default');
+            nextButton.classList.add('arrow-disabled');
+            nextButton.style.pointerEvents = 'none';
+        } else {
+            nextButton.style.pointerEvents = 'auto';
+        }
     }
 }
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+document.querySelectorAll('.sidebar-content').forEach(initCarousel);
 
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("textSlides");
-    let dots = document.getElementsByClassName("dot");
 
-    // Ensure slideIndex stays within bounds
-    if (n > slides.length) { slideIndex = slides.length; }
-    if (n < 1) { slideIndex = 1; }
-
-    // Hide all slides and remove active class from all dots
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+function setButtonZIndex() {
+    const previousButtons = document.getElementsByClassName('previous');
+    const nextButtons = document.getElementsByClassName('next');
+    
+    for (let button of previousButtons) {
+        button.style.zIndex = '10';
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+    for (let button of nextButtons) {
+        button.style.zIndex = '10';
     }
-
-    // Show the current slide and set the active dot
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-
-    // Update button styles
-    changeButtonStyle();
-}
-
-function changeButtonStyle() {
-    const previousButton = document.getElementsByClassName('previous')[0];
-    const nextButton = document.getElementsByClassName('next')[0];
-    const slides = document.getElementsByClassName("textSlides");
-
-    // Reset to default
-    previousButton.classList.remove('arrow-disabled');
-    previousButton.classList.add('arrow-default');
-    nextButton.classList.remove('arrow-disabled');
-    nextButton.classList.add('arrow-default');
-
-    // Disable buttons conditionally
-    if (slideIndex === 1) {
-        previousButton.classList.remove('arrow-default');
-        previousButton.classList.add('arrow-disabled');
-        previousButton.style.pointerEvents = 'none'; // Disable click
-    } else {
-        previousButton.style.pointerEvents = 'auto'; // Enable click
-    }
-    if (slideIndex === slides.length) {
-        nextButton.classList.remove('arrow-default');
-        nextButton.classList.add('arrow-disabled');
-        nextButton.style.pointerEvents = 'none'; // Disable click
-    } else {
-        nextButton.style.pointerEvents = 'auto'; // Enable click
-    }
-}
-
-
-// Slide in of the text content
-function showSidebar() {
-    let iconContainer = document.querySelector('#icon-container');
-    // set z-index of iconContainer to 3
-    iconContainer.style.zIndex = 3;
-    const iconFeketeSereg = document.querySelector('#feketesereg');
-    const iconMonastery = document.querySelector('#monastery');
-    const sidebar = document.querySelector('.sidebar-container');
-    sidebar.style.left = '0';
-    iconFeketeSereg.style.left = '79vw';
-    iconMonastery.style.left = '100vw';
 }

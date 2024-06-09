@@ -31,18 +31,16 @@ function updateImage() {
         // show welcome table content at specific image index
         if (currentImageIndex >= 129 && currentImageIndex <= 131) {
             showTableContent('welcome');
-            showTableContent('welcome-text');
         } else {
             hideTableContent('welcome');
-            hideTableContent('welcome-text');
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
         if (currentImageIndex >= 151 && currentImageIndex <= 154) {
-            showTableContent('icon-container');
-            console.log("show icon container");
+            showTableContent('icon-container-1');
+            // showTableContent('sidebar-left');
         } else {
-            hideTableContent('icon-container');
+            hideTableContent('icon-container-1');
         }
     }
 }
@@ -64,37 +62,120 @@ window.addEventListener('scroll', function () {
 //     window.scrollTo(0, 0);
 // };
 
+function showTableContent(content) {
+    // let element = document.getElementById(content);
+    let classElement = document.querySelector(`.${content}`);
+    classElement.style.visibility = 'visible';
 
-
-// display div with id when specific mainImg is displayed
-// function showTableContent(contentId) {
-//     const tableContent = document.getElementById('table-content');
-//     const children = tableContent.children;
-
-//     for (let i = 0; i < children.length; i++) {
-//         const child = children[i];
-//         if (child.id === contentId) {
-//             child.style.visibility = "visible";
-//         } else {
-//             child.style.visibility = "hidden";
-//         }
-//     }
-// }
-function showTableContent(contentId) {
-    let element = document.getElementById(contentId);
-    element.style.visibility = 'visible';
 }
 
-function hideTableContent(id) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.style.visibility = 'hidden';
+function hideTableContent(content) {
+    let classElement = document.querySelector(`.${content}`);
+    if (classElement) {
+        classElement.style.visibility = 'hidden';
     }
 }
 
-// print viewport width
-console.log("viewport width: " + window.innerWidth);
+let isIconMoved = false;
+function moveIcons(iconCont, iconID) {
+    const iconContainer = document.querySelector(`.${iconCont}`);
+    const icon = document.querySelector(iconID);
 
+    
+
+    if (icon.id === 'feketesereg') {
+        if (!isIconMoved) {
+            // icon.style.width = '20vw'; // Adjust as needed   
+            iconContainer.style.left = '65vw'; // Adjust as needed
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
+  
+
+        } else {
+            // icon.style.width = "400px";
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
+
+
+        }
+
+    }
+
+    else if (icon.id === 'monastary') {
+        if (!isIconMoved) {
+            // sidebarLeft.forEach(el => el.parentNode.removeChild(el));
+            iconContainer.style.left = '-70vw'; // Adjust as needed
+            moveSidebar('sidebar-right', 'contentMonastary');
+            // icon.style.width = '20vw'; // Adjust as needed   
+        } else {
+            iconContainer.style.left = '0';
+            // icon.style.width = "400px";
+            moveSidebar('sidebar-right', 'contentMonastary');
+        }
+
+    }
+
+    isIconMoved = !isIconMoved;
+}
+
+
+let isSidebarVisible = false;
+function moveSidebar(sidebar, textID) {
+    let sidebars = document.getElementsByClassName(sidebar);
+
+    let sidebarLeft = document.querySelectorAll(".sidebar-left");
+    let sidebarRight = document.querySelectorAll(".sidebar-right");
+
+    // loop through each element with the class name left-sidebar or right-sidebar
+    for (let i = 0; i < sidebars.length; i++) {
+        let sidebarContainer = sidebars[i];
+
+        // access child elements of sidebarContainer
+        let childElements = sidebarContainer.children;
+
+        // loop through each child element of sidebarContainer
+        for (let j = 0; j < childElements.length; j++) {
+            // get the id of the child element
+            let contentID = childElements[j].id;
+            console.log("contentID: " + contentID);
+
+            // check if the contentID matches the textID to show the right content
+            if (contentID === textID) {
+
+                if (textID === 'contentFeketeSereg') {
+                    console.log("contentFeketeSereg");
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '0'; // Adjust as needed
+                    } else {
+                        sidebarContainer.style.left = '-100%';
+                        // sidebarContainer.style.visibility = 'hidden';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentMonastary') {
+                    console.log("contentMonastary");
+
+                    if (!isSidebarVisible) {
+                        // sidebarLeft.forEach(el => el.parentNode.removeChild(el));
+                        // void document.body.offsetHeight;
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        // sidebarContainer.style.left = '0'; // Adjust as needed
+                        console.log("sidebar moved to 0");
+                    } else {
+                        sidebarContainer.style.left = '100%';
+                        console.log("sidebar moved to 100");
+                        //sidebarContainer.style.visibility = 'hidden';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+            }
+
+        }
+    }
+
+}
 
 
 // text carousel
@@ -103,7 +184,7 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
     // Prevent slide index from moving beyond the first or last slide
-    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) || 
+    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) ||
         (n < 0 && slideIndex > 1)) {
         showSlides(slideIndex += n);
     }
@@ -167,17 +248,7 @@ function changeButtonStyle() {
 }
 
 
-// Slide in of the text content
-// function showSidebar() {
-//     const iconFeketeSereg = document.querySelector('#feketesereg');
-//     const iconMonastery = document.querySelector('#monastery');
-//     const sidebar = document.querySelector('.sidebar-container');
-//     sidebar.style.left = '0';
-//     iconFeketeSereg.style.left = '79vw';
-//     iconMonastery.style.left = '100vw';
-// }
-
-let isSidebarVisible = false;
+// let isSidebarVisible = false;
 // function showSidebar(iconTag, otherIconTag) {
 //     const icon = document.querySelector(iconTag);
 //     const otherIcon = document.querySelector(otherIconTag);
@@ -188,7 +259,7 @@ let isSidebarVisible = false;
 //         if (!isSidebarVisible) {
 //             sidebarToRight.classList.add('sidebar-visible');
 //             icon.style.left = '79vw'; // Adjust as needed
-//             icon.style.width = '20vw'; // Adjust as needed   
+//             icon.style.width = '20vw'; // Adjust as needed
 //         } else {
 //             sidebarToRight.classList.remove('sidebar-visible');
 //             icon.style.left = '0';
@@ -200,7 +271,7 @@ let isSidebarVisible = false;
 //         if (!isSidebarVisible) {
 //             sidebarToLeft.classList.add('sidebar-visible');
 //             icon.style.left = '0'; // Adjust as needed
-//             icon.style.width = '20vw'; // Adjust as needed   
+//             icon.style.width = '20vw'; // Adjust as needed
 //         } else {
 //             sidebarToLeft.classList.remove('sidebar-visible');
 //             icon.style.left = '-200px';
@@ -210,84 +281,3 @@ let isSidebarVisible = false;
 
 //     isSidebarVisible = !isSidebarVisible;
 // }
-
-function showSidebar(iconTag, otherIconTag) {
-    const icon = document.querySelector(iconTag);
-    const otherIcon = document.querySelector(otherIconTag);
-    const sidebar = document.querySelector('.sidebar-container');
-    const sidebarToRight = document.querySelector('.sidebar-container-toRight');
-    const sidebarToLeft = document.querySelector('.sidebar-container-toLeft');
-
-    if(iconTag === '#feketesereg') {
-        //if the sidebar is not visible/if isSidebarVisible = false
-        if (!isSidebarVisible) {
-            // Show the sidebar
-            sidebarToRight.style.left = '0';
-            icon.style.left = '79vw'; // Adjust as needed
-            icon.style.width = '20vw'; // Adjust as needed   
-            // otherIcon.style.left = '100vw'; // Adjust as needed
-        }
-        // if the sidebar is visible 
-        else {
-            // Hide the sidebar
-            sidebarToRight.style.left = '-100%';
-            icon.style.left = '0';
-            icon.style.width = "400px";
-        }
-    }
-
-    if(iconTag === '#monastery') {
-        // if the sidebar is not visible/if isSidebarVisible = false
-        if (!isSidebarVisible) {
-            // Show the sidebar
-            sidebarToLeft.style.left = '20%';
-            icon.style.left = '0'; // Adjust as needed
-            icon.style.width = '20vw'; // Adjust as needed   
-            // otherIcon.style.left = '100vw'; // Adjust as needed
-        }
-        // if the sidebar is visible 
-        else {
-            // Hide the sidebar
-            sidebarToLeft.style.left = '100%';
-            icon.style.left = '-200px';
-            icon.style.width = "400px";
-            // otherIcon.style.left = '200px';
-        }
-    }
-    
-
-    // Toggle sidebar visibility flag
-    isSidebarVisible = !isSidebarVisible;
-}
-
-
-
-
-
-
-
-
-
-// following resize event listener is for stopping transition when resizing the window, but does not work yet
-
-// event listener for stoping transition when resizing the window
-// let resizeTimeout;
-
-// window.addEventListener('resize', () => {
-//     const elements = document.querySelectorAll('*'); // Select all elements in the document
-
-//     // Add the no-transition class to all elements
-//     elements.forEach(element => {
-//         element.classList.add('stop-transition');
-//     });
-
-//     // Clear the timeout if it was already set
-//     clearTimeout(resizeTimeout);
-
-//     // Set a timeout to remove the no-transition class after resizing is finished
-//     resizeTimeout = setTimeout(() => {
-//         elements.forEach(element => {
-//             element.classList.remove('stop-transition');
-//         });
-//     }, 200); // Adjust the timeout duration as needed
-// });

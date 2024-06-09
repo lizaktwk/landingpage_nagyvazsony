@@ -38,7 +38,7 @@ function updateImage() {
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
         if (currentImageIndex >= 151 && currentImageIndex <= 154) {
             showTableContent('icon-container-1');
-            showTableContent('sidebar-left');
+            // showTableContent('sidebar-left');
         } else {
             hideTableContent('icon-container-1');
         }
@@ -54,7 +54,6 @@ window.addEventListener('scroll', function () {
         currentImageIndex = newIndex;
         console.log(currentImageIndex);
         updateImage();
-        // setZIndex();
     }
 });
 
@@ -76,176 +75,162 @@ function hideTableContent(content) {
     }
 }
 
-let isSidebarVisible = false;
+let isIconMoved = false;
 function moveIcons(iconCont, iconID) {
     const iconContainer = document.querySelector(`.${iconCont}`);
-    const icon = document.querySelector(iconID);
-    console.log("icon: ", icon);
+    const iconIMG = document.querySelector(iconID);
 
-    if (icon.id === 'feketesereg') {
-        console.log('icon-1 pressed');
-        if (!isSidebarVisible) {
-            icon.style.width = '20vw'; // Adjust as needed   
-            iconContainer.style.left = '65vw'; // Adjust as needed
-            moveSidebar('sidebar-left', '#contentFeketeSereg');
-            
+    if (iconIMG.id === 'feketesereg') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '68vw';
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
         } else {
-            icon.style.width = "400px";
             iconContainer.style.left = '0';
-            moveSidebar('sidebar-left', '#contentFeketeSereg');
+            moveSidebar('sidebar-left', 'contentFeketeSereg');
+        }
+    }
+
+    else if (iconIMG.id === 'monastary') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '-70vw';
+            moveSidebar('sidebar-right', 'contentMonastary');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-right', 'contentMonastary');
         }
 
     }
 
-    else if (icon.id === 'monastary') {
-        console.log('icon-2 pressed');
-        if (!isSidebarVisible) {
-            iconContainer.style.left = '-74vw'; // Adjust as needed
-            icon.style.width = '20vw'; // Adjust as needed   
-        } else {
-            iconContainer.style.left = '0';
-            icon.style.width = "400px";
-        }
-
-    }
-
-    isSidebarVisible = !isSidebarVisible;
+    isIconMoved = !isIconMoved;
 }
 
 
-let isSidebarVisible1 = false;
+let isSidebarVisible = false;
 function moveSidebar(sidebar, textID) {
-    let sidebarContainer = document.querySelector(`.${sidebar}`);
-    let contentID = document.getElementById(textID);
-    console.log("contentID: ", contentID);
+    let sidebars = document.getElementsByClassName(sidebar);
 
-    if (contentID === 'contentFeketeSereg') {
-        if (!isSidebarVisible1) {
-            sidebarContainer.style.left = '0'; // Adjust as needed
-            console.log("sidebar moved to 0");
-        } else {
-            sidebarContainer.style.left = '100%';
-            console.log("sidebar moved to 100");
+    // loop through each element with the class name left-sidebar or right-sidebar
+    for (let i = 0; i < sidebars.length; i++) {
+        let sidebarContainer = sidebars[i];
+
+        // access child elements of sidebarContainer
+        let childElements = sidebarContainer.children;
+
+        // loop through each child element of sidebarContainer
+        for (let j = 0; j < childElements.length; j++) {
+            // get the id of the child element
+            let contentID = childElements[j].id;
+            console.log("contentID: " + contentID);
+
+            // check if the contentID matches the textID to show the right content
+            if (contentID === textID) {
+
+                if (textID === 'contentFeketeSereg') {
+                    console.log("contentFeketeSereg");
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '0'; // Adjust as needed
+                    } else {
+                        sidebarContainer.style.left = '-100%';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentMonastary') {
+                    console.log("contentMonastary");
+
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        console.log("sidebar moved to 0");
+                    } else {
+                        sidebarContainer.style.left = '100%';
+                        console.log("sidebar moved to 100");
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+            }
+
         }
-
     }
 
-    else if (contentID === 'monastary') {
-        console.log('icon-2 pressed');
-        if (!isSidebarVisible1) {
-            sidebarContainer.style.left = '-74vw'; // Adjust as needed
-            contentID.style.width = '20vw'; // Adjust as needed   
-        } else {
-            sidebarContainer.style.left = '0';
-            contentID.style.width = "400px";
-        }
-
-    }
-
-    isSidebarVisible1 = !isSidebarVisible1;
 }
 
 
 // text carousel
-let slideIndex = 1;
-showSlides(slideIndex);
+function initCarousel(carousel) {
+    let slideIndex = 1;
+    const slides = carousel.getElementsByClassName("textSlides");
+    const dots = carousel.getElementsByClassName("dot");
+    const previousButton = carousel.getElementsByClassName('previous')[0];
+    const nextButton = carousel.getElementsByClassName('next')[0];
 
-function plusSlides(n) {
-    // Prevent slide index from moving beyond the first or last slide
-    if ((n > 0 && slideIndex < document.getElementsByClassName("textSlides").length) ||
-        (n < 0 && slideIndex > 1)) {
-        showSlides(slideIndex += n);
+    showSlides(slideIndex);
+
+    previousButton.onclick = function (event) {
+        event.preventDefault();
+        plusSlides(-1);
+    };
+    nextButton.onclick = function (event) {
+        event.preventDefault();
+        plusSlides(1);
+    };
+
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].onclick = function () {
+            currentSlide(i + 1);
+        };
+    }
+
+    function plusSlides(n) {
+        if ((n > 0 && slideIndex < slides.length) || (n < 0 && slideIndex > 1)) {
+            showSlides(slideIndex += n);
+        }
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        if (n > slides.length) { slideIndex = slides.length; }
+        if (n < 1) { slideIndex = 1; }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+
+        changeButtonStyle();
+    }
+
+    function changeButtonStyle() {
+        previousButton.classList.remove('arrow-disabled');
+        previousButton.classList.add('arrow-default');
+        nextButton.classList.remove('arrow-disabled');
+        nextButton.classList.add('arrow-default');
+
+        if (slideIndex === 1) {
+            previousButton.classList.remove('arrow-default');
+            previousButton.classList.add('arrow-disabled');
+            previousButton.style.pointerEvents = 'none';
+        } else {
+            previousButton.style.pointerEvents = 'auto';
+        }
+
+        if (slideIndex === slides.length) {
+            nextButton.classList.remove('arrow-default');
+            nextButton.classList.add('arrow-disabled');
+            nextButton.style.pointerEvents = 'none';
+        } else {
+            nextButton.style.pointerEvents = 'auto';
+        }
     }
 }
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("textSlides");
-    let dots = document.getElementsByClassName("dot");
-
-    // Ensure slideIndex stays within bounds
-    if (n > slides.length) { slideIndex = slides.length; }
-    if (n < 1) { slideIndex = 1; }
-
-    // Hide all slides and remove active class from all dots
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    // Show the current slide and set the active dot
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-
-    // Update button styles
-    changeButtonStyle();
-}
-
-function changeButtonStyle() {
-    const previousButton = document.getElementsByClassName('previous')[0];
-    const nextButton = document.getElementsByClassName('next')[0];
-    const slides = document.getElementsByClassName("textSlides");
-
-    // Reset to default
-    previousButton.classList.remove('arrow-disabled');
-    previousButton.classList.add('arrow-default');
-    nextButton.classList.remove('arrow-disabled');
-    nextButton.classList.add('arrow-default');
-
-    // Disable buttons conditionally
-    if (slideIndex === 1) {
-        previousButton.classList.remove('arrow-default');
-        previousButton.classList.add('arrow-disabled');
-        previousButton.style.pointerEvents = 'none'; // Disable click
-    } else {
-        previousButton.style.pointerEvents = 'auto'; // Enable click
-    }
-    if (slideIndex === slides.length) {
-        nextButton.classList.remove('arrow-default');
-        nextButton.classList.add('arrow-disabled');
-        nextButton.style.pointerEvents = 'none'; // Disable click
-    } else {
-        nextButton.style.pointerEvents = 'auto'; // Enable click
-    }
-}
-
-
-// let isSidebarVisible = false;
-// function showSidebar(iconTag, otherIconTag) {
-//     const icon = document.querySelector(iconTag);
-//     const otherIcon = document.querySelector(otherIconTag);
-//     const sidebarToRight = document.querySelector('.sidebar-container-toRight');
-//     const sidebarToLeft = document.querySelector('.sidebar-container-toLeft');
-
-//     if (iconTag === '#feketesereg') {
-//         if (!isSidebarVisible) {
-//             sidebarToRight.classList.add('sidebar-visible');
-//             icon.style.left = '79vw'; // Adjust as needed
-//             icon.style.width = '20vw'; // Adjust as needed
-//         } else {
-//             sidebarToRight.classList.remove('sidebar-visible');
-//             icon.style.left = '0';
-//             icon.style.width = "400px";
-//         }
-//     }
-
-//     if (iconTag === '#monastery') {
-//         if (!isSidebarVisible) {
-//             sidebarToLeft.classList.add('sidebar-visible');
-//             icon.style.left = '0'; // Adjust as needed
-//             icon.style.width = '20vw'; // Adjust as needed
-//         } else {
-//             sidebarToLeft.classList.remove('sidebar-visible');
-//             icon.style.left = '-200px';
-//             icon.style.width = "400px";
-//         }
-//     }
-
-//     isSidebarVisible = !isSidebarVisible;
-// }
+document.querySelectorAll('.sidebar-content').forEach(initCarousel);

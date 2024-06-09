@@ -13,11 +13,12 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="teststyle.css">
-    <!-- <script src="./script.js" defer></script> -->
-    <script src="./testscript.js" defer></script>
-    // Bootstrap
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="teststyle.css"> -->
+    <!-- <link rel="stylesheet" href="newtestSTYLE.css"> -->
+    <script src="./script.js" defer></script>
+    <!-- <script src="./testscript.js" defer></script> -->
+    <!-- <script src="./newtestscript.js" defer></script> -->
 
 </head>
 
@@ -26,7 +27,8 @@
         <div id="image-container">
             <img src="./Test-Video-Web-PNGs/Test-Video000.png" alt="" id="mainImg">
             <div id="table-content">
-                <div id="welcome" class="content">Welcome to <br> Nagyvázsony
+                <div class="welcome">
+                    <div id="welcome">Welcome to <br> Nagyvázsony</div>
                     <div id="welcome-text">
 
                         Hello there, and welcome to Nagyvázsony,
@@ -38,66 +40,87 @@
                     </div>
                 </div>
 
-                <div id="icon-container">
-                    <div class="icon" id="feketesereg">
-                        <img src="./Icons/FeketeSereg_Icon_LIGHT.png" alt="Fekete Sereg" class="hoverIcon" onclick="showSidebar('#feketesereg', '#monastery')">
-                        <h2>Fekete Sereg</h2>
-                    
-                        <div class="sidebar-container-toRight">
-                            <div class="sidebar-content">
-                                <img src="./Images-FeketeSereg/IMG_8472.JPG" alt="Fekete Sereg">
-                                <div class="text">
-                                    <div class="textSlides">
-                                        <p>For me, the heart of Nagyvázsony. It is not only the local contact point for young people, but also my host organization during my voluntary service, through which I first came into contact with this small Hungarian village near Lake Balaton.</p>
-                                    </div>
-                                    <div class="textSlides">
-                                        <p>The organization has its local youth center in the center of Nagyvázsony and shares the building of a former elementary school with other facilities such as a small café.</p>
-                                    </div>
-                                    <div class="textSlides">
-                                        <p>In this youth center I was able to get in touch with the local youth besides my fellow volunteers from all over Europe and got my introduction to the life, language, and culture of Hungary.</p>
-                                    </div>
-                                    <a href="#" class="previous round" onClick="plusSlides(-1); event.preventDefault();">&#8249;</a>
-                                    <a href="#" class="next round" onClick="plusSlides(1); event.preventDefault();">&#8250;</a>
-                                    <div class="dots">
-                                        <span class="dot" onclick="currentSlide(1)"></span> 
-                                        <span class="dot" onclick="currentSlide(2)"></span> 
-                                        <span class="dot" onclick="currentSlide(3)"></span> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="icon-container-1">
+                    <div id="icon-1">
+                        <img src="./Icons/FeketeSereg_Icon_LIGHT.png" alt="Fekete Sereg" class="hoverIcon"
+                            id="feketesereg" onclick="moveIcons('icon-container-1', '#feketesereg')">
+                        <h2 class="label">Fekete Sereg</h2>
                     </div>
-                    
-                    <div class="icon" id="monastery">
-                        <img src="./Icons/FeketeSereg_Icon_LIGHT.png" alt="Monastery" class="hoverIcon" onclick="showSidebar('#monastery', '#feketesereg')">
-                        <h2>Monastery</h2>
-                    
-                        <div class="sidebar-container-toLeft">
-                            <div class="sidebar-content">
-                                <img src="./Images-FeketeSereg/IMG_8472.JPG" alt="Monastery">
-                                <div class="text">
-                                    <div class="textSlides">
-                                        <p>For me, the heart of Nagyvázsony. It is not only the local contact point for young people, but also my host organization during my voluntary service, through which I first came into contact with this small Hungarian village near Lake Balaton.</p>
-                                    </div>
-                                    <div class="textSlides">
-                                        <p>The organization has its local youth center in the center of Nagyvázsony and shares the building of a former elementary school with other facilities such as a small café.</p>
-                                    </div>
-                                    <div class="textSlides">
-                                        <p>In this youth center I was able to get in touch with the local youth besides my fellow volunteers from all over Europe and got my introduction to the life, language, and culture of Hungary.</p>
-                                    </div>
-                                    <a href="#" class="previous round" onClick="plusSlides(-1); event.preventDefault();">&#8249;</a>
-                                    <a href="#" class="next round" onClick="plusSlides(1); event.preventDefault();">&#8250;</a>
-                                    <div class="dots">
-                                        <span class="dot" onclick="currentSlide(1)"></span> 
-                                        <span class="dot" onclick="currentSlide(2)"></span> 
-                                        <span class="dot" onclick="currentSlide(3)"></span> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="icon-2">
+                        <img src="./Icons/FeketeSereg_Icon_LIGHT.png" alt="Fekete Sereg" class="hoverIcon"
+                            id="monastary" onclick="moveIcons('icon-container-1', '#monastary')">
+                        <h2 class="label">Monastary</h2>
                     </div>
-                    
                 </div>
+
+                <div class="sidebar-left">
+                    <div class="sidebar-content" id="contentFeketeSereg">
+                        <img src="./Images/FeketeSereg/SeeYouSoonDinner.JPG" alt="Fekete Sereg">
+                        <div class="text">
+                            <div class="textSlides">
+                                <p>For me, the heart of Nagyvázsony. It is not only the local contact point for young people, but also my host organization during my voluntary service, through which I first came into contact with this small Hungarian village near Lake Balaton.</p>
+                            </div>
+                            <div class="textSlides">
+                                <p>The organization has its local youth center in the center of Nagyvázsony and shares the building of a former elementary school with other facilities such as a small café.</p>
+                            </div>
+                            <div class="textSlides">
+                                <p>In this youth center I was able to get in touch with the local youth besides my fellow volunteers from all over Europe and got my introduction to the life, language, and culture of Hungary.</p>
+                            </div>
+
+                            <a href="#" class="previous round" onClick="plusSlides(-1); event.preventDefault();">&#8249;</a>
+                            <a href="#" class="next round" onClick="plusSlides(1); event.preventDefault();">&#8250;</a>
+
+                            <div class="dots">
+                                <span class="dot" onclick="currentSlide(1)"></span> 
+                                <span class="dot" onclick="currentSlide(2)"></span> 
+                                <span class="dot" onclick="currentSlide(3)"></span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-right">
+                    <div class="sidebar-content" id="contentMonastary">
+                        <img src="./Images/Monastary/IMG_3987.JPEG" alt="Monastary">
+                        <div class="text">
+                            <div class="textSlides">
+                                <p>There is a castle in Nagyvázsony. This castle belonged to the legendary Hungarian
+                                    general Pál Kinizsi, after whom many institutions in the town are named, e.g. the
+                                    local soccer team, the pub and the local youth center and its youth organization.
+                                </p>
+                            </div>
+                            <div class="textSlides">
+                                <p>Kinizsi had the monastery built near his castle, which I would like to introduce
+                                    here. It was built in the 15th century, but was largely destroyed in the 16th
+                                    century and even burned down once in the following century. So it had to go through
+                                    a lot in a very short space of time. Despite the destruction, the old monastery
+                                    ruins are still an attraction for many tourists in the area. And this place is also
+                                    a special one for me.
+                                </p>
+                            </div>
+                            <div class="textSlides">
+                                <p>Not necessarily because of its historical or religious significance, but because of
+                                    the atmosphere of peace and tranquillity that prevails here. I like to spend time
+                                    here with my friends, whether it's a walk during the day or a small campfire party
+                                    in the evening. It is simply a place that invites you to linger, pause and enjoy.
+                                </p>
+                            </div>
+
+                            <a href="#" class="previous round"
+                                onClick="plusSlides(-1); event.preventDefault();">&#8249;</a>
+                            <a href="#" class="next round" onClick="plusSlides(1); event.preventDefault();">&#8250;</a>
+
+                            <div class="dots">
+                                <span class="dot" onclick="currentSlide(1)"></span>
+                                <span class="dot" onclick="currentSlide(2)"></span>
+                                <span class="dot" onclick="currentSlide(3)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
             </div>
 
         </div>
