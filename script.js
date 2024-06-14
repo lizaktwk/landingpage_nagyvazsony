@@ -13,11 +13,14 @@ function imageCache(base, firstNum, lastNum) {
     }
 }
 
-const myCache = new imageCache('./Test-Video-Web-PNGs/Test-Video', 0, 479);
+const myCache = new imageCache('./WEB-PNG/Web', 0, 479);
 let currentImageIndex = 0;
 
+// Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
+let sensitivityFactor = 3;
+
 // Calculate the height of the document based on the number of images
-document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight}px`;
+document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight / sensitivityFactor}px`;
 
 function updateImage() {
     if (currentImageIndex >= 0 && currentImageIndex < myCache.cache.length) {
@@ -45,8 +48,17 @@ function updateImage() {
 
 window.addEventListener('scroll', function () {
     const maxScrollTop = document.body.scrollHeight - window.innerHeight;
-    const scrollFraction = window.scrollY / maxScrollTop;
-    const newIndex = Math.min(myCache.cache.length - 1, Math.floor(scrollFraction * myCache.cache.length));
+    // const scrollFraction = window.scrollY / maxScrollTop;
+    // const newIndex = Math.min(myCache.cache.length - 1, Math.floor(scrollFraction * myCache.cache.length));
+
+    // if (newIndex !== currentImageIndex) {
+    //     currentImageIndex = newIndex;
+    //     console.log(currentImageIndex);
+    //     updateImage();
+    // }
+
+    // Calculate the new index based on the scroll position
+    const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
 
     if (newIndex !== currentImageIndex) {
         currentImageIndex = newIndex;
@@ -60,16 +72,24 @@ window.addEventListener('scroll', function () {
 // };
 
 function showTableContent(content) {
-    // let element = document.getElementById(content);
     let classElement = document.querySelector(`.${content}`);
-    classElement.style.visibility = 'visible';
-
+    if (classElement) {
+        classElement.style.visibility = 'visible';
+        classElement.classList.remove('fade-out-down'); // Remove fade-out-down if it's there
+        classElement.classList.add('fade-in-up');
+    }
 }
 
 function hideTableContent(content) {
     let classElement = document.querySelector(`.${content}`);
     if (classElement) {
-        classElement.style.visibility = 'hidden';
+        classElement.classList.remove('fade-in-up'); // Remove fade-in-up if it's there
+        classElement.classList.add('fade-out-down');
+        // Use a timeout to hide the element after the animation completes
+        setTimeout(() => {
+            classElement.style.visibility = 'hidden';
+            classElement.classList.remove('fade-out-down');
+        }, 500); // 500ms matches the duration of the animation
     }
 }
 
@@ -129,7 +149,7 @@ function moveSidebar(sidebar, textID) {
                     console.log("contentFeketeSereg");
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '0'; // Adjust as needed
+                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
                     } else {
                         sidebarContainer.style.left = '-100%';
                     }
@@ -236,4 +256,26 @@ function initCarousel(carousel) {
 }
 
 document.querySelectorAll('.sidebar-content').forEach(initCarousel);
+
+
+// automatic slideshow
+let autoSlideIndex = [0, 0];
+let slideId = ["imgSlides1", "imgSlides2"]; // Corrected "mySlides2" to "imgSlides2"
+autoSlides(0, 0);
+autoSlides(0, 1);
+
+function autoSlides(n, no) {
+    let i;
+    let slides = document.getElementsByClassName(slideId[no]);
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].getElementsByTagName('img')[0].classList.remove('visible'); // Hide all images
+    }
+    autoSlideIndex[no]++;
+    if (autoSlideIndex[no] > slides.length) {
+        autoSlideIndex[no] = 1;
+    }
+    slides[autoSlideIndex[no] - 1].getElementsByTagName('img')[0].classList.add('visible'); // Show the current image
+    setTimeout(() => autoSlides(n, no), 4000); // Change image every 2 seconds
+}
 
