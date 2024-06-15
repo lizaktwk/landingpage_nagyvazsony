@@ -13,7 +13,7 @@ function imageCache(base, firstNum, lastNum) {
     }
 }
 
-const myCache = new imageCache('./WEB-PNG/Web', 0, 479);
+const myCache = new imageCache('./WEB-PNG/Web', 0, 478);
 let currentImageIndex = 0;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
@@ -37,11 +37,23 @@ function updateImage() {
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
-        if (currentImageIndex >= 151 && currentImageIndex <= 154) {
+        if (currentImageIndex >= 148 && currentImageIndex <= 154) {
             showTableContent('icon-container-1');
             // showTableContent('sidebar-left');
         } else {
             hideTableContent('icon-container-1');
+        }
+
+        if (currentImageIndex >= 192 && currentImageIndex <= 198) {
+            showTableContent('icon-container-2');
+        } else {
+            hideTableContent('icon-container-2');
+        }
+
+        if (currentImageIndex >= 235 && currentImageIndex <= 241) {
+            showTableContent('icon-container-3');
+        } else {
+            hideTableContent('icon-container-3');
         }
     }
 }
@@ -120,6 +132,50 @@ function moveIcons(iconCont, iconID) {
 
     }
 
+    else if (iconIMG.id === 'community') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '68vw';
+            moveSidebar('sidebar-left', 'contentCommunity');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-left', 'contentCommunity');
+        }
+
+    }
+
+    else if (iconIMG.id === 'bogracs') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '-70vw';
+            moveSidebar('sidebar-right', 'contentBogracs');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-right', 'contentBogracs');
+        }
+
+    }
+
+    else if (iconIMG.id === 'hungarian') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '68vw';
+            moveSidebar('sidebar-left', 'contentHungarian');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-left', 'contentHungarian');
+        }
+
+    }
+
+    else if (iconIMG.id === 'niceBench') {
+        if (!isIconMoved) {
+            iconContainer.style.left = '-70vw';
+            moveSidebar('sidebar-right', 'contentNiceBench');
+        } else {
+            iconContainer.style.left = '0';
+            moveSidebar('sidebar-right', 'contentNiceBench');
+        }
+
+    }
+
     isIconMoved = !isIconMoved;
 }
 
@@ -140,7 +196,6 @@ function moveSidebar(sidebar, textID) {
         for (let j = 0; j < childElements.length; j++) {
             // get the id of the child element
             let contentID = childElements[j].id;
-            console.log("contentID: " + contentID);
 
             // check if the contentID matches the textID to show the right content
             if (contentID === textID) {
@@ -162,10 +217,54 @@ function moveSidebar(sidebar, textID) {
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
                         sidebarContainer.style.left = '20%'; // Adjust as needed
-                        console.log("sidebar moved to 0");
                     } else {
                         sidebarContainer.style.left = '100%';
-                        console.log("sidebar moved to 100");
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentCommunity') {
+                    console.log("contentCommunity");
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
+                    } else {
+                        sidebarContainer.style.left = '-100%';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentBogracs') {
+                    console.log("contentBogracs");
+
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                    } else {
+                        sidebarContainer.style.left = '100%';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentHungarian') {
+                    console.log("contentHungarian");
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
+                    } else {
+                        sidebarContainer.style.left = '-100%';
+                    }
+                    isSidebarVisible = !isSidebarVisible;
+                }
+
+                if (textID === 'contentNiceBench') {
+                    console.log("contentNiceBench");
+
+                    if (!isSidebarVisible) {
+                        sidebarContainer.style.visibility = 'visible';
+                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                    } else {
+                        sidebarContainer.style.left = '100%';
                     }
                     isSidebarVisible = !isSidebarVisible;
                 }
@@ -259,10 +358,14 @@ document.querySelectorAll('.sidebar-content').forEach(initCarousel);
 
 
 // automatic slideshow
-let autoSlideIndex = [0, 0];
-let slideId = ["imgSlides1", "imgSlides2"]; // Corrected "mySlides2" to "imgSlides2"
+let autoSlideIndex = [0, 0, 0, 0, 0, 0];
+let slideId = ["imgSlides1", "imgSlides2", "imgSlides3", "imgSlides4", "imgSlides5", "imgSlides6"];
 autoSlides(0, 0);
 autoSlides(0, 1);
+autoSlides(0, 2);
+autoSlides(0, 3);
+autoSlides(0, 4);
+autoSlides(0, 5);
 
 function autoSlides(n, no) {
     let i;

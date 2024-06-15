@@ -140,7 +140,7 @@ p {
     /* justify-content: space-between; */
     width: 100vw;
     height: 100vh;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     left: 0;
     transition: left 0.5s ease-in-out;
 
@@ -149,7 +149,7 @@ p {
 
 #icon-1 {
     z-index: 3;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
@@ -206,7 +206,105 @@ p {
     transform: scale(1.1);
 }
 
+.icon-container-2 {
+    /* display: flex; */
+    position: fixed;
+    /* justify-content: space-between; */
+    width: 100vw;
+    height: 100vh;
+    /* border: 3px solid green; */
+    left: 0;
+    transition: left 0.5s ease-in-out;
 
+}
+
+#icon-3 {
+    z-index: 3;
+    /* border: 1px solid red; */
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    width: 20vw;
+    height: fit-content;
+    /* left: 200px; */
+    /* left: 10vw; */
+    right: -10vw;
+
+}
+
+#community {
+    z-index: 2;
+    position: relative;
+    /* transition: width 0.5s ease-in-out; */
+}
+
+#icon-4 {
+    /* border: 1px solid red; */
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    width: 20vw;
+    height: fit-content;
+    /* left: 70vw; */
+    right: -70vw;
+    bottom: 5vh;
+    /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
+
+}
+
+.icon-container-3 {
+    /* display: flex; */
+    position: fixed;
+    /* justify-content: space-between; */
+    width: 100vw;
+    height: 100vh;
+    /* border: 3px solid green; */
+    left: 0;
+    transition: left 0.5s ease-in-out;
+
+}
+
+#icon-5 {
+    z-index: 3;
+    /* border: 1px solid red; */
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    width: 20vw;
+    height: fit-content;
+    /* left: 200px; */
+    /* left: 10vw; */
+    right: -10vw;
+
+}
+
+#hungarian {
+    z-index: 2;
+    position: relative;
+    /* transition: width 0.5s ease-in-out; */
+}
+
+#icon-6 {
+    /* border: 1px solid red; */
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    width: 20vw;
+    height: fit-content;
+    /* left: 70vw; */
+    right: -70vw;
+    bottom: 5vh;
+    /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
+
+}
 
 
 
@@ -221,7 +319,7 @@ p {
     /* left will be set from -100% to 0 */
     left: -100%;
     transition: left 0.5s ease-in-out;
-    border: 10px solid orange;
+    /* border: 10px solid orange; */
 
 }
 
