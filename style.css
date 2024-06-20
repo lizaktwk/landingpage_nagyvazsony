@@ -63,6 +63,7 @@ p {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -79,6 +80,7 @@ p {
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
         transform: translateY(10px);
@@ -170,7 +172,7 @@ p {
 }
 
 #icon-2 {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     position: relative;
     /* position: fixed; */
@@ -196,6 +198,17 @@ p {
     font-style: normal;
     font-size: 3em;
     color: #000;
+    /* margin-top: -45px; */
+    margin-top: -6%;
+}
+
+
+#label-monastary {
+    margin-top:0;
+}
+
+#label-hungarian {
+    margin-top:0;
 }
 
 .hoverIcon {
@@ -248,11 +261,11 @@ p {
     flex-direction: column;
     text-align: center;
     width: 400px;
-    width: 20vw;
+    width: 25vw;
     height: fit-content;
     /* left: 70vw; */
     right: -70vw;
-    bottom: 5vh;
+    bottom: 15vh;
     /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
 
 }
@@ -363,7 +376,7 @@ p {
 .slideshow-container {
     width: 50vw;
     height: 50vh;
-    border-radius: 40px;
+    /* border-radius: 40px; */
     /* padding-right: 15px; */
     /* border: 3px solid red; */
     overflow: hidden;
@@ -371,6 +384,7 @@ p {
     justify-content: center;
     align-items: center;
     position: relative;
+    /* border: 3px solid yellow; */
 }
 
 
@@ -378,7 +392,7 @@ p {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    border-radius: 40px;
+    /* border-radius: 40px; */
     /* margin: 0; */
     padding-right: 15px;
     position: absolute;
@@ -403,7 +417,7 @@ p {
     height: 50vh;
     width: fit-content;
     position: relative;
-    /* border: 3px solid red; */
+    /* border: 3px solid green; */
     float: inline-end;
 
 
@@ -418,13 +432,32 @@ p {
     font-style: normal;
     font-size: 2em;
     text-align: justify;
+    text-align: start;
     align-content: center;
     height: 50vh;
     width: fit-content;
     min-height: 50vh;
-    /* border: 3px solid blueviolet; */
+    /* border: 3px solid blueviolet; */    
+}
 
+#call-to-action {
+    background-color: #432313;
+    border: 2px solid #D2971A;
+    color: #D2971A;
+    font-family: "adorn-condensed-sans", sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 32px;
+    padding-top: 20px;
+    margin-top: 30px;
+    /* border-radius: 30px; */
+    width: 100%;
+}
 
+#call-to-action:hover {
+    background-color: #D2971A;
+    color: #432313;
 }
 
 
@@ -484,7 +517,8 @@ a:hover {
     justify-content: center;
     align-items: center;
     /* margin-top: auto; Push the dots to the bottom */
-    margin-top: -20px;
+    /* margin-top: -20px; */
+    /* margin-bottom: 0; */
 
 }
 
@@ -502,4 +536,147 @@ a:hover {
 .active,
 .dot:hover {
     background-color: #b58318;
+}
+
+/* Style the scroll-bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #341b0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #D2971A;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #D1B373;
+}
+
+/* Responsiveness: Mediaqueries */
+@media screen and (max-width: 1280px) { 
+
+    /*war vorher 1024px*/
+    #welcome-text {
+        width: 96%;
+        top: 90%;
+        height: fit-content;
+        font-size: 0.4em;
+
+    }
+
+    .icon-container-3 {
+        border: 3px solid red;
+    }
+    /* #icon-6 {
+
+        width: 400px;
+        width: 40vw;
+        right: -40vw;
+        bottom: 0;
+        top: 3vh;
+    
+    } */
+    /* #icon-6 {
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        text-align: center;
+        width: 400px;
+        width: 40vw;
+        height: fit-content;
+        right: 40px;
+        bottom: 0;    
+    }  */
+
+    .label {
+        font-size: 2em;
+        position: relative;
+        left: 5px;
+    }
+
+    /* #feketesereg {
+        left: 0;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0; 
+    }
+
+    #monastery {
+        top: 410px;
+        left: -200px;
+    } */
+
+    .slideshow-container {
+        /* border: 3px solid yellow; */
+        width: 100%;
+        top: 30px;
+    }
+
+    .slideshow-container img {
+        /* border: 3px solid red; */
+        /* bottom: 0; */
+        /* top: 80%; */
+    }
+
+    .sidebar-content {
+
+        flex-direction: column;
+        /* border: 3px solid red; */
+    }
+
+    .text {
+        height: 30vh;
+        /* border: 3px solid green; */
+        top: 70px;
+    }
+    
+    .text p {
+        min-height: fit-content;
+        height: 35vh;
+        /* border: 3px solid blueviolet;     */
+    }
+
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+/* @media screen and (max-width: 600px) {
+    #welcome {
+        font-size: 30px;
+        font-size: 8vw;
+        font-size: 4em;
+    }
+
+    #welcome-text {
+        width: 96%;
+        font-size: 0.32em;
+
+    }
+
+    .icon {
+        width: 300px;
+
+    }
+
+    .icon h2 {
+        font-size: 3.5em;
+    }
+
+    #feketesereg {
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #monastery {
+        top: 420px;
+        left: -90px;
+    }
+
+    .sidebar-content {
+        flex-direction: column;
+    }
 }

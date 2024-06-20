@@ -65,7 +65,6 @@ function updateImage() {
             showTableContent('icon-container-1');
         } else {
             hideTableContent('icon-container-1');
-            previousImageIndex = -1;
         }
 
         if (currentImageIndex >= 158 && currentImageIndex <= 164) {
@@ -257,7 +256,6 @@ function cycleImagesForwards() {
 //     cycleNextImage();
 // }
 
-
 // Define your scroll event listener function
 function scrollEventListener() {
     // Calculate the new index based on the scroll position
@@ -269,6 +267,7 @@ function scrollEventListener() {
         console.log(currentImageIndex);
         updateImage();
     }
+    
 }
 
 // Add the scroll event listener
