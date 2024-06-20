@@ -1,20 +1,39 @@
+// function imageCache(base, firstNum, lastNum) {
+//     this.cache = [];
+//     for (let i = firstNum; i <= lastNum; i++) {
+//         const frames = new Image();
+//         if (i <= 9) {
+//             frames.src = base + "00" + i + ".png";
+//         } else if (i <= 99) {
+//             frames.src = base + "0" + i + ".png";
+//         } else {
+//             frames.src = base + i + ".png";
+//         }
+//         this.cache.push(frames);
+//     }
+// }
+
 function imageCache(base, firstNum, lastNum) {
     this.cache = [];
     for (let i = firstNum; i <= lastNum; i++) {
         const frames = new Image();
         if (i <= 9) {
-            frames.src = base + "00" + i + ".png";
+            frames.src = base + "000" + i + ".png";
         } else if (i <= 99) {
-            frames.src = base + "0" + i + ".png";
+            frames.src = base + "00" + i + ".png";
         } else {
-            frames.src = base + i + ".png";
+            frames.src = base + "0" + i + ".png";
         }
         this.cache.push(frames);
     }
 }
 
-const myCache = new imageCache('./WEB-PNG/Web', 0, 478);
+
+// const myCache = new imageCache('./WEB-PNG/Web', 0, 478);
+const myCache = new imageCache('./Final-PNGs/', 1, 440);
+// src="./Final-PNGs/0001.png
 let currentImageIndex = 0;
+let previousImageIndex = -1;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
 let sensitivityFactor = 3;
@@ -37,11 +56,23 @@ function updateImage() {
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
-        if (currentImageIndex >= 148 && currentImageIndex <= 154) {
+        if (currentImageIndex >= 145 && currentImageIndex <= 154) {
+            const startIndex = 145;
             showTableContent('icon-container-1');
-            // showTableContent('sidebar-left');
+            if (currentImageIndex === startIndex) {
+                resetIconPosition('icon-container-1');
+            } else if (currentImageIndex !== previousImageIndex) {
+                if (currentImageIndex > previousImageIndex) {
+                    updateIconPosition(currentImageIndex, 'icon-container-1', 'left');
+                } else if (currentImageIndex < previousImageIndex) {
+                    updateIconPosition(currentImageIndex, 'icon-container-1', 'right');
+                }
+                previousImageIndex = currentImageIndex;
+            }
+
         } else {
             hideTableContent('icon-container-1');
+            previousImageIndex = -1;
         }
 
         if (currentImageIndex >= 192 && currentImageIndex <= 198) {
@@ -58,16 +89,31 @@ function updateImage() {
     }
 }
 
-window.addEventListener('scroll', function () {
-    const maxScrollTop = document.body.scrollHeight - window.innerHeight;
-    // const scrollFraction = window.scrollY / maxScrollTop;
-    // const newIndex = Math.min(myCache.cache.length - 1, Math.floor(scrollFraction * myCache.cache.length));
 
-    // if (newIndex !== currentImageIndex) {
-    //     currentImageIndex = newIndex;
-    //     console.log(currentImageIndex);
-    //     updateImage();
-    // }
+function updateIconPosition(startIndex, iconContainer, direction) {
+    console.log("updateIconPosition called")
+    let iconContainerElement = document.querySelector(`.${iconContainer}`);
+    let currentPosition = parseFloat(window.getComputedStyle(iconContainerElement).left) || 0;
+    let iconContainerWidth = iconContainerElement.offsetWidth;
+    let positionChange = iconContainerWidth / 6;
+
+    let newPosition;
+    if (direction === 'left') {
+        newPosition = currentPosition - positionChange + 'px';
+    } else if (direction === 'right') {
+        newPosition = currentPosition + positionChange + 'px';
+    }
+
+    iconContainerElement.style.left = newPosition;
+}
+
+function resetIconPosition(iconContainer) {
+    console.log("resetIconPosition called");
+    let iconContainerElement = document.querySelector(`.${iconContainer}`);
+    iconContainerElement.style.left = '0';
+}
+
+window.addEventListener('scroll', function () {
 
     // Calculate the new index based on the scroll position
     const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
@@ -179,6 +225,10 @@ function moveIcons(iconCont, iconID) {
     isIconMoved = !isIconMoved;
 }
 
+function updateScrollPosition(index) {
+    const newScrollY = (index * window.innerHeight) / sensitivityFactor;
+    window.scrollTo(0, newScrollY);
+}
 
 let isSidebarVisible = false;
 function moveSidebar(sidebar, textID) {
@@ -207,6 +257,8 @@ function moveSidebar(sidebar, textID) {
                         sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
                     } else {
                         sidebarContainer.style.left = '-100%';
+                        currentImageIndex = 145;
+                        updateScrollPosition(currentImageIndex);
                     }
                     isSidebarVisible = !isSidebarVisible;
                 }
