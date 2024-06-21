@@ -94,7 +94,7 @@ p {
 
 /* Welcome content */
 .welcome {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     display: flex;
     text-align: center;
     align-items: center;
@@ -105,8 +105,9 @@ p {
     z-index: 1;
     width: 100%;
     height: fit-content;
-    top: 10%;
+    top: 15%;
     min-height: 70vh;
+    margin: auto;
 
 }
 
@@ -118,9 +119,6 @@ p {
     color: #D2971A;
     /* border: 3px solid blue; */
     padding-top: 50px;
-
-
-
 }
 
 #welcome-text {
@@ -131,7 +129,7 @@ p {
     text-align: center;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
     width: 60vw;
-    width: 70%;
+    width: 60%;
     height: fit-content;
     /* border: 3px solid green; */
 }
@@ -142,7 +140,7 @@ p {
     /* justify-content: space-between; */
     width: 100vw;
     height: 100vh;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     left: 0;
     transition: left 0.5s ease-in-out;
 
@@ -559,38 +557,6 @@ a:hover {
 /* Responsiveness: Mediaqueries */
 @media screen and (max-width: 1280px) { 
 
-    /*war vorher 1024px*/
-    #welcome-text {
-        width: 96%;
-        top: 90%;
-        height: fit-content;
-        font-size: 0.4em;
-
-    }
-
-    .icon-container-3 {
-        border: 3px solid red;
-    }
-    /* #icon-6 {
-
-        width: 400px;
-        width: 40vw;
-        right: -40vw;
-        bottom: 0;
-        top: 3vh;
-    
-    } */
-    /* #icon-6 {
-        display: flex;
-        position: absolute;
-        flex-direction: column;
-        text-align: center;
-        width: 400px;
-        width: 40vw;
-        height: fit-content;
-        right: 40px;
-        bottom: 0;    
-    }  */
 
     .label {
         font-size: 2em;
@@ -598,28 +564,11 @@ a:hover {
         left: 5px;
     }
 
-    /* #feketesereg {
-        left: 0;
-        left: 0;
-        margin-left: 0;
-        margin-right: 0; 
-    }
-
-    #monastery {
-        top: 410px;
-        left: -200px;
-    } */
 
     .slideshow-container {
         /* border: 3px solid yellow; */
         width: 100%;
         top: 30px;
-    }
-
-    .slideshow-container img {
-        /* border: 3px solid red; */
-        /* bottom: 0; */
-        /* top: 80%; */
     }
 
     .sidebar-content {

@@ -1,17 +1,3 @@
-// function imageCache(base, firstNum, lastNum) {
-//     this.cache = [];
-//     for (let i = firstNum; i <= lastNum; i++) {
-//         const frames = new Image();
-//         if (i <= 9) {
-//             frames.src = base + "00" + i + ".png";
-//         } else if (i <= 99) {
-//             frames.src = base + "0" + i + ".png";
-//         } else {
-//             frames.src = base + i + ".png";
-//         }
-//         this.cache.push(frames);
-//     }
-// }
 
 function imageCache(base, firstNum, lastNum) {
     this.cache = [];
@@ -29,11 +15,7 @@ function imageCache(base, firstNum, lastNum) {
 }
 
 
-// const myCache = new imageCache('./WEB-PNG/Web', 0, 478);
-// const myCache = new imageCache('./Final-PNGs/', 1, 440);
 const myCache = new imageCache('./Final-PNGs1/', 1, 440);
-// const myCache = new imageCache('./Final_TableOneShot_PNGs', 1, 440);
-// src="./Final-PNGs/0001.png
 let currentImageIndex = 0;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
@@ -43,9 +25,10 @@ let sensitivityFactor = 3;
 document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight / sensitivityFactor}px`;
 let bodyHeight = document.body.style.height;
 
-
+// Variable for the goal scrollbar position at the start of the backwards image cycle
 let scrollbarInitCyclePos;
 
+// main function
 function updateImage() {
     if (currentImageIndex >= 0 && currentImageIndex < myCache.cache.length) {
         const currentImage = myCache.cache[currentImageIndex];
@@ -81,7 +64,6 @@ function updateImage() {
         }
 
         if (currentImageIndex === 175 && currentImageIndex < myCache.cache.length) {
-            // cycleImages();
             cycleImagesForwards();
         }
 
@@ -94,8 +76,6 @@ function updateImage() {
 
 function cycleImagesBackwards() {
     if (currentImageIndex < 436 && currentImageIndex >= 175) {
-        // console.log("scrollBarInitCyclePos: ", scrollHeight);
-        console.log("scrollbarInitCyclePos: ", scrollbarInitCyclePos);
         disableScrollEventListener();
 
         function cyclePreviousImage() {
@@ -113,15 +93,6 @@ function cycleImagesBackwards() {
                 // Schedule the next image cycle
                 setTimeout(cyclePreviousImage, 42);
             } else {
-                console.log("Reached start of the cycle");
-
-                // Scroll the page to the top smoothly before re-enabling the scroll event listener
-                // window.scrollTo({top: scrollbarInitCyclePos, behavior: 'smooth'});
-                // window.scrollTo({
-                //     top: 0,
-                //     behavior: 'smooth'
-                // });
-
                 // Wait until the smooth scrolling is complete before re-enabling the scroll event listener
                 setTimeout(() => {
                     enableScrollEventListener();
@@ -150,8 +121,6 @@ function cycleImagesForwards() {
         // Define a function to handle the image cycling with setTimeout
         function cycleNextImage() {
             if (currentImageIndex > 170 && currentImageIndex < myCache.cache.length) {
-                // Scroll the page to the bottom incrementally
-                // const scrollStep = document.body.scrollHeight / remainingImgs;
                 window.scrollBy(scrollPosition, scrollHeight);
 
                 const currentImage = myCache.cache[currentImageIndex];
@@ -260,14 +229,11 @@ function cycleImagesForwards() {
 function scrollEventListener() {
     // Calculate the new index based on the scroll position
     const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
-    console.log("newIndex: ", newIndex);
-
     if (newIndex !== currentImageIndex) {
         currentImageIndex = newIndex;
         console.log(currentImageIndex);
         updateImage();
-    }
-    
+    }   
 }
 
 // Add the scroll event listener
@@ -283,20 +249,6 @@ function disableScrollEventListener() {
 function enableScrollEventListener() {
     window.addEventListener('scroll', scrollEventListener);
 }
-
-// window.addEventListener('scroll', function () {
-
-//     // Calculate the new index based on the scroll position
-//     const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
-
-//     if (newIndex !== currentImageIndex) {
-//         currentImageIndex = newIndex;
-//         console.log(currentImageIndex);
-//         updateImage();
-//     }
-// });
-
-
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);

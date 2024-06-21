@@ -1,17 +1,3 @@
-// function imageCache(base, firstNum, lastNum) {
-//     this.cache = [];
-//     for (let i = firstNum; i <= lastNum; i++) {
-//         const frames = new Image();
-//         if (i <= 9) {
-//             frames.src = base + "00" + i + ".png";
-//         } else if (i <= 99) {
-//             frames.src = base + "0" + i + ".png";
-//         } else {
-//             frames.src = base + i + ".png";
-//         }
-//         this.cache.push(frames);
-//     }
-// }
 
 function imageCache(base, firstNum, lastNum) {
     this.cache = [];
@@ -29,18 +15,20 @@ function imageCache(base, firstNum, lastNum) {
 }
 
 
-// const myCache = new imageCache('./WEB-PNG/Web', 0, 478);
-const myCache = new imageCache('./Final-PNGs/', 1, 440);
-// src="./Final-PNGs/0001.png
+const myCache = new imageCache('./Final-PNGs1/', 1, 440);
 let currentImageIndex = 0;
-let previousImageIndex = -1;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
 let sensitivityFactor = 3;
 
 // Calculate the height of the document based on the number of images
 document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight / sensitivityFactor}px`;
+let bodyHeight = document.body.style.height;
 
+// Variable for the goal scrollbar position at the start of the backwards image cycle
+let scrollbarInitCyclePos;
+
+// main function
 function updateImage() {
     if (currentImageIndex >= 0 && currentImageIndex < myCache.cache.length) {
         const currentImage = myCache.cache[currentImageIndex];
@@ -56,78 +44,152 @@ function updateImage() {
         }
 
         // show welcome table content at specific image index --> Icons: Fekete Sereg + 
-        if (currentImageIndex >= 145 && currentImageIndex <= 154) {
-            const startIndex = 145;
+        if (currentImageIndex >= 145 && currentImageIndex <= 156) {
             showTableContent('icon-container-1');
-            if (currentImageIndex === startIndex) {
-                resetIconPosition('icon-container-1');
-            } else if (currentImageIndex !== previousImageIndex) {
-                if (currentImageIndex > previousImageIndex) {
-                    updateIconPosition(currentImageIndex, 'icon-container-1', 'left');
-                } else if (currentImageIndex < previousImageIndex) {
-                    updateIconPosition(currentImageIndex, 'icon-container-1', 'right');
-                }
-                previousImageIndex = currentImageIndex;
-            }
-
         } else {
             hideTableContent('icon-container-1');
-            previousImageIndex = -1;
         }
 
-        if (currentImageIndex >= 192 && currentImageIndex <= 198) {
+        if (currentImageIndex >= 158 && currentImageIndex <= 164) {
             showTableContent('icon-container-2');
         } else {
             hideTableContent('icon-container-2');
         }
 
-        if (currentImageIndex >= 235 && currentImageIndex <= 241) {
+        if (currentImageIndex >= 166 && currentImageIndex <= 172) {
+            scrollbarInitCyclePos = window.scrollY;
             showTableContent('icon-container-3');
         } else {
             hideTableContent('icon-container-3');
         }
+
+        if (currentImageIndex === 175 && currentImageIndex < myCache.cache.length) {
+            cycleImagesForwards();
+        }
+
+        if (currentImageIndex === 435) {
+            cycleImagesBackwards();
+        }
+    }
+
+}
+
+function cycleImagesBackwards() {
+    if (currentImageIndex < 436 && currentImageIndex >= 175) {
+        disableScrollEventListener();
+
+        function cyclePreviousImage() {
+            if (currentImageIndex < 436 && currentImageIndex >= 175) {
+                // window.scrollBy(scrollPosition, scrollbarInitCyclePos);
+                window.scrollTo({ top: scrollbarInitCyclePos, behavior: 'smooth' });
+
+                const currentImage = myCache.cache[currentImageIndex];
+                const mainImg = document.getElementById('mainImg');
+                mainImg.src = currentImage.src;
+                mainImg.style.zIndex = 0;
+                currentImageIndex--; // Decrement currentImageIndex for the previous image
+                console.log("currentImageIndex was set to: ", currentImageIndex);
+
+                // Schedule the next image cycle
+                setTimeout(cyclePreviousImage, 42);
+            } else {
+                // Wait until the smooth scrolling is complete before re-enabling the scroll event listener
+                setTimeout(() => {
+                    enableScrollEventListener();
+                }, 1000); // Adjust the delay if needed
+                console.log("scrolleventlistener enabled");
+                // break out of the function to stop the cycling process
+                return;
+            }
+        }
+
+        cyclePreviousImage();
     }
 }
 
 
-function updateIconPosition(startIndex, iconContainer, direction) {
-    console.log("updateIconPosition called")
-    let iconContainerElement = document.querySelector(`.${iconContainer}`);
-    let currentPosition = parseFloat(window.getComputedStyle(iconContainerElement).left) || 0;
-    let iconContainerWidth = iconContainerElement.offsetWidth;
-    let positionChange = iconContainerWidth / 6;
+function cycleImagesForwards() {
+    if (currentImageIndex > 170 && currentImageIndex < myCache.cache.length) {
+        // get the current position of the scroll bar
+        let scrollPosition = window.scrollY;
+        // get the scroll height of the document
+        let scrollHeight = document.body.scrollHeight;
 
-    let newPosition;
-    if (direction === 'left') {
-        newPosition = currentPosition - positionChange + 'px';
-    } else if (direction === 'right') {
-        newPosition = currentPosition + positionChange + 'px';
+        // Disable the scroll event listener
+        disableScrollEventListener();
+
+        // Define a function to handle the image cycling with setTimeout
+        function cycleNextImage() {
+            if (currentImageIndex > 170 && currentImageIndex < myCache.cache.length) {
+                window.scrollBy(scrollPosition, scrollHeight);
+
+                const currentImage = myCache.cache[currentImageIndex];
+                const mainImg = document.getElementById('mainImg');
+                mainImg.src = currentImage.src;
+                mainImg.style.zIndex = 0;
+                currentImageIndex++; // Increment currentImageIndex for the next image
+                console.log("currentImageIndex was set to: ", currentImageIndex);
+
+
+                // Schedule the next image cycle
+                setTimeout(cycleNextImage, 42);
+
+
+            } else {
+                console.log("End of the Images");
+                // Scroll the page to the bottom smoothly before re-enabling the scroll event listener
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+
+                // Wait until the smooth scrolling is complete before re-enabling the scroll event listener
+                setTimeout(() => {
+                    enableScrollEventListener();
+                    // print the current image index
+                    console.log("currentImageIndex: ", currentImageIndex);
+                    // updateImage();
+                }, 1000); // Adjust the delay if needed
+
+                // break out of the function to stop the cycling process
+                return;
+
+            }
+        }
     }
 
-    iconContainerElement.style.left = newPosition;
+    // Start the image cycling process
+    cycleNextImage();
 }
 
-function resetIconPosition(iconContainer) {
-    console.log("resetIconPosition called");
-    let iconContainerElement = document.querySelector(`.${iconContainer}`);
-    iconContainerElement.style.left = '0';
-}
-
-window.addEventListener('scroll', function () {
-
+// Define your scroll event listener function
+function scrollEventListener() {
     // Calculate the new index based on the scroll position
     const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
-
     if (newIndex !== currentImageIndex) {
         currentImageIndex = newIndex;
         console.log(currentImageIndex);
         updateImage();
-    }
-});
+    }   
+}
 
-// window.onbeforeunload = function () {
-//     window.scrollTo(0, 0);
-// };
+// Add the scroll event listener
+window.addEventListener('scroll', scrollEventListener);
+
+
+// Function to disable the scroll event listener
+function disableScrollEventListener() {
+    window.removeEventListener('scroll', scrollEventListener);
+}
+
+// Function to enable the scroll event listener
+function enableScrollEventListener() {
+    window.addEventListener('scroll', scrollEventListener);
+}
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
 
 function showTableContent(content) {
     let classElement = document.querySelector(`.${content}`);
@@ -225,10 +287,6 @@ function moveIcons(iconCont, iconID) {
     isIconMoved = !isIconMoved;
 }
 
-function updateScrollPosition(index) {
-    const newScrollY = (index * window.innerHeight) / sensitivityFactor;
-    window.scrollTo(0, newScrollY);
-}
 
 let isSidebarVisible = false;
 function moveSidebar(sidebar, textID) {
@@ -257,8 +315,6 @@ function moveSidebar(sidebar, textID) {
                         sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
                     } else {
                         sidebarContainer.style.left = '-100%';
-                        currentImageIndex = 145;
-                        updateScrollPosition(currentImageIndex);
                     }
                     isSidebarVisible = !isSidebarVisible;
                 }
