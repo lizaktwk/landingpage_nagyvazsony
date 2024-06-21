@@ -15,7 +15,7 @@ function imageCache(base, firstNum, lastNum) {
 }
 
 
-const myCache = new imageCache('./Final-PNGs1/', 1, 440);
+const myCache = new imageCache('./Final-PNGs/', 1, 440);
 let currentImageIndex = 0;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
@@ -43,7 +43,6 @@ function updateImage() {
             hideTableContent('welcome');
         }
 
-        // show welcome table content at specific image index --> Icons: Fekete Sereg + 
         if (currentImageIndex >= 145 && currentImageIndex <= 156) {
             showTableContent('icon-container-1');
         } else {
@@ -91,7 +90,7 @@ function cycleImagesBackwards() {
                 console.log("currentImageIndex was set to: ", currentImageIndex);
 
                 // Schedule the next image cycle
-                setTimeout(cyclePreviousImage, 42);
+                setTimeout(cyclePreviousImage, 24);
             } else {
                 // Wait until the smooth scrolling is complete before re-enabling the scroll event listener
                 setTimeout(() => {
