@@ -99,14 +99,14 @@ p {
     text-align: center;
     align-items: center;
     /* flex-wrap: wrap; */
-    /* justify-content: space-around; */
+    justify-content: space-between;
     position: fixed;
     flex-direction: column;
     z-index: 1;
     width: 100%;
-    height: fit-content;
+    /* height: fit-content; */
+    height: 70vh;
     top: 15%;
-    min-height: 70vh;
     margin: auto;
 
 }
@@ -115,29 +115,28 @@ p {
     font-family: "adorn-condensed-sans", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 5em;
+    /* font-size: 5em; */
     color: #D2971A;
-    /* border: 3px solid blue; */
-    padding-top: 50px;
+    position: relative;
 }
 
 #welcome-text {
     font-family: "Merriweather", serif;
     font-style: normal;
-    font-size: 2em;
+    /* font-size: 2em; */
     color: #D1B373;
     text-align: center;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-    width: 60vw;
-    width: 60%;
-    height: fit-content;
-    /* border: 3px solid green; */
+    position: relative;
+    bottom: 0;
+    padding-bottom: 30px;
 }
 
 .icon-container-1 {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    /* justify-content: space-between; */
+    justify-content: space-evenly;
     width: 100vw;
     height: 100vh;
     /* border: 3px solid green; */
@@ -148,19 +147,11 @@ p {
 
 
 #icon-1 {
-    z-index: 3;
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 20vw;
     height: fit-content;
-    /* left: 200px; */
-    /* left: 10vw; */
-    right: -10vw;
-
 }
 
 #feketesereg {
@@ -173,40 +164,34 @@ p {
     /* border: 1px solid red; */
     display: flex;
     position: relative;
-    /* position: fixed; */
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 20vw;
     height: fit-content;
-    /* left: 70vw; */
-    right: -70vw;
-    bottom: 5vh;
-    /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
-
 }
 
-/* #monastary {
-    transition: width 0.5s ease-in-out;
-} */
 
 .label {
     font-family: "adorn-condensed-sans", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 3em;
+    /* font-size: 3em; */
     color: #000;
     /* margin-top: -45px; */
     margin-top: -6%;
+    align-self: center;
 }
 
 
 #label-monastary {
-    margin-top:0;
+    margin-top: 0;
 }
 
 #label-hungarian {
-    margin-top:0;
+    margin-top: 0;
+}
+
+#label-niceBench {
+    margin-top: -15%;
 }
 
 .hoverIcon {
@@ -219,103 +204,73 @@ p {
 }
 
 .icon-container-2 {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    /* justify-content: space-between; */
+    justify-content: space-evenly;
     width: 100vw;
     height: 100vh;
     /* border: 3px solid green; */
     left: 0;
     transition: left 0.5s ease-in-out;
-
 }
 
 #icon-3 {
-    z-index: 3;
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 20vw;
     height: fit-content;
-    /* left: 200px; */
-    /* left: 10vw; */
-    right: -10vw;
-
 }
 
 #community {
     z-index: 2;
-    position: relative;
+    /* z-index: 2;
+    position: relative; */
     /* transition: width 0.5s ease-in-out; */
 }
 
 #icon-4 {
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 25vw;
     height: fit-content;
-    /* left: 70vw; */
-    right: -70vw;
-    bottom: 15vh;
-    /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
-
 }
 
 .icon-container-3 {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    /* justify-content: space-between; */
+    justify-content: space-evenly;
     width: 100vw;
     height: 100vh;
     /* border: 3px solid green; */
     left: 0;
     transition: left 0.5s ease-in-out;
-
 }
 
 #icon-5 {
-    z-index: 3;
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 20vw;
     height: fit-content;
-    /* left: 200px; */
-    /* left: 10vw; */
-    right: -10vw;
-
 }
 
 #hungarian {
     z-index: 2;
-    position: relative;
+    /* z-index: 2;
+    position: relative; */
     /* transition: width 0.5s ease-in-out; */
 }
 
 #icon-6 {
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
     flex-direction: column;
     text-align: center;
-    width: 400px;
-    width: 20vw;
     height: fit-content;
-    /* left: 70vw; */
-    right: -70vw;
-    bottom: 5vh;
-    /* transition: left 0.5s ease-in-out, width 0.5s ease-in-out; */
-
 }
 
 
@@ -355,7 +310,7 @@ p {
     height: 100vh;
     padding: 20px;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     align-items: center;
     position: relative;
     /* border: 3px solid blue; */
@@ -363,16 +318,8 @@ p {
 }
 
 
-/* .sidebar-content img {
-    /* width: fit-content;
-    height: 50vh;
-    border-radius: 40px;
-    padding-right: 15px;
-    border: 3px solid red;
-} */
-
 .slideshow-container {
-    width: 50vw;
+    /* width: 50vw; */
     height: 50vh;
     /* border-radius: 40px; */
     /* padding-right: 15px; */
@@ -392,7 +339,7 @@ p {
     object-fit: contain;
     /* border-radius: 40px; */
     /* margin: 0; */
-    padding-right: 15px;
+    /* padding-right: 15px; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -413,7 +360,7 @@ p {
     align-items: center;
     justify-content: space-between;
     height: 50vh;
-    width: fit-content;
+    /* width: fit-content; */
     position: relative;
     /* border: 3px solid green; */
     float: inline-end;
@@ -432,10 +379,8 @@ p {
     text-align: justify;
     text-align: start;
     align-content: center;
-    height: 50vh;
     width: fit-content;
-    min-height: 50vh;
-    /* border: 3px solid blueviolet; */    
+    /* border: 3px solid blueviolet; */
 }
 
 #call-to-action {
@@ -477,7 +422,7 @@ a:hover {
 
 .previous {
     position: absolute;
-    top: 50%;
+    /* top: 50%; */
     transform: translateY(-50%);
     /* background-color: #D1B373; */
     color: black;
@@ -486,7 +431,7 @@ a:hover {
 
 .next {
     position: absolute;
-    top: 50%;
+    /* top: 50%; */
     transform: translateY(-50%);
     color: black;
     right: 0;
@@ -514,10 +459,6 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-top: auto; Push the dots to the bottom */
-    /* margin-top: -20px; */
-    /* margin-bottom: 0; */
-
 }
 
 .dot {
@@ -534,6 +475,359 @@ a:hover {
 .active,
 .dot:hover {
     background-color: #b58318;
+}
+
+/* Responsiveness: Mediaqueries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .welcome {
+        /* border: 3px solid red; */
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    #welcome {
+        /* border: 3px solid blue; */
+        width: 90vw;
+        font-size: 6vh;
+    }
+
+    #welcome-text {
+        /* border: 3px solid green; */
+        width: 90vw;
+        font-size: 3vh;
+    }
+
+    .icon-container-1 {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #icon-1 {
+        width: 60vw;
+        right: 0;
+    }
+
+    #icon-2 {
+        width: 50vw;
+        left: 40vw;
+    }
+
+    #icon-3 {
+        width: 60vw;
+        right: -10px;
+    }
+
+    #icon-4 {
+        width: 80vw;
+        left: 30vw;
+    }
+
+    #icon-5 {
+        width: 60vw;
+        right: -10px;
+    }
+
+    #icon-6 {
+        width: 80vw;
+        left: 20vw;
+    }
+
+    .label {
+        font-size: 3em;
+    }
+
+
+    .sidebar-content {
+        flex-direction: column;
+        /* border: 3px solid blue; */
+
+    }
+
+    .slideshow-container {
+        width: 70vw;
+        /* border: 3px solid yellow; */
+    }
+
+
+    .slideshow-container img {
+        padding-right: 0;
+    }
+
+    .text {
+        width: 70vw;
+        /* border: 3px solid green; */
+    }
+
+    .text p {
+        font-size: 16px;
+        height: 40vh;
+        width: 75vw;
+        min-height: 40vh;
+        /* border: 3px solid blueviolet; */
+    }
+
+    .previous {
+        left: -10px;
+        top: 40%;
+    }
+
+    .next {
+        right: -10px;
+        top: 40%;
+    }
+
+    .dots {
+        margin-bottom: -1vh;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .welcome {
+        /* border: 3px solid red; */
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    #welcome {
+        /* border: 3px solid blue; */
+        font-size: 8vh;
+    }
+
+    #welcome-text {
+        /* border: 3px solid green; */
+        width: 90vw;
+        font-size: 3vh;
+
+    }
+
+
+    #icon-1 {
+        width: 40vw;
+        right: 0;
+        top: -10vh;
+        /* border: 3px solid red; */
+    }
+
+    #icon-2 {
+        width: 40vw;
+        left: 40vw;
+    }
+
+    #icon-3 {
+        width: 45vw;
+        right: 0;
+    }
+
+    #icon-4 {
+        width: 60vw;
+        left: 40vw;
+    }
+
+    #icon-5 {
+        width: 50vw;
+        right: 0;
+        top: -5vh;
+    }
+
+    #icon-6 {
+        width: 60vw;
+        left: 40vw;
+    }
+
+    .label {
+        font-size: 5em;
+    }
+
+    .sidebar-content {
+        flex-direction: column;
+        /* border: 3px solid blue; */
+
+    }
+
+    .slideshow-container {
+        width: 70vw;
+        /* border: 3px solid yellow; */
+    }
+
+
+    .slideshow-container img {
+        padding-right: 0;
+    }
+
+    .text {
+        width: 70vw;
+        /* border: 3px solid green; */
+    }
+
+    .text p {
+        height: 45vh;
+        min-height: 40vh;
+        /* border: 3px solid blueviolet; */
+        font-size: 1.5em;
+    }
+
+    a {
+        padding: 24px 32px;
+    }
+
+    .previous {
+        left: -30px;
+        top: 40%;
+    }
+
+    .next {
+        right: -30px;
+        top: 40%;
+    }
+
+    .dots {
+        margin-bottom: 100px;
+    }
+
+
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    #welcome {
+        font-size: 5em;
+    }
+
+    #welcome-text {
+        width: 60%;
+        font-size: 2em;
+    }
+
+    #icon-1 {
+        width: 25vw;
+        right: -5vw;
+        top: 0;
+        
+    }
+
+    #icon-2 {
+        width: 25vw;
+        left: 65vw;
+        bottom: 10vh;
+    }
+
+    #icon-3 {
+        width: 25vw;
+        right: 0;
+    }
+
+    #icon-4 {
+        width: 40vw;
+        left: 65vw;
+        bottom: 15vh;
+    }
+
+    #icon-5 {
+        width: 30vw;
+        right: 0;
+        top: -5vh;
+    }
+
+    #icon-6 {
+        width: 40vw;
+        left: 60vw;
+        bottom: 15vh;
+    }
+
+    .label {
+        font-size: 3.5em;
+    }
+
+    .sidebar-content {
+        flex-direction: row;
+    }
+
+    .slideshow-container {
+        width: 50vw;
+        /* border: 3px solid yellow; */
+    }
+
+    .slideshow-container img {
+        padding-right: 15px;
+    }
+
+    .text {
+        width: fit-content;
+    }
+
+    .text p {
+        height: 50vh;
+        min-height: 50vh;
+        /* font-size: 2em; */
+        /* border: 3px solid blue; */
+    }
+
+    a {
+        padding: 8px 16px;
+    }
+
+    .previous {
+        left: 0;
+        top: 50%;
+    }
+
+    .next {
+        right: 0;
+        top: 50%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #icon-1 {
+        width: 22vw;
+        right: -5vw;
+    }
+
+    #icon-2 {
+        width: 22vw;
+        left: 65vw;
+        bottom: 10vh;
+    }
+
+    #icon-3 {
+        width: 20vw;
+        right: -3vw;
+    }
+
+    #icon-4 {
+        width: 30vw;
+        left: 70vw;
+        bottom: 25vh;
+    }
+
+    #icon-5 {
+        width: 20vw;
+        right: -3vw;
+        /* top: -5vh; */
+        top: 0;
+    }
+
+    #icon-6 {
+        width: 25vw;
+        left: 65vw;
+        bottom: 15vh;
+    }
+
+    .label {
+        font-size: 5em;
+    }
+
+    .text p {
+        font-size: 2em;
+    }
 }
 
 /* Style the scroll-bar */
@@ -554,9 +848,59 @@ a:hover {
     background-color: #D1B373;
 }
 
-/* Responsiveness: Mediaqueries */
-@media screen and (max-width: 1280px) { 
+/* @media screen and (max-height: 728px) {
 
+    .welcome {
+
+        flex-direction: row;
+
+        justify-content: space-around;
+        justify-content: center;
+    }
+
+    #welcome-text {
+        border: 3px solid green;
+        width: 90vw;
+        font-size: 3.5vh;
+    }
+
+}
+
+@media screen and (min-height: 800px) {
+    #welcome-text {
+        bottom: 60px;
+    }
+}
+@media screen and (max-width: 1280px) and (min-height: 530px) {
+    .welcome {
+        flex-wrap: nowrap;
+    }
+
+    #welcome-text {
+        width: 90vw;
+        padding-top: 30px;
+    }
+}
+@media screen and (max-width: 1280px) and (max-height: 530px) {
+
+    .welcome {
+
+        justify-content: space-around;
+    }
+
+    #welcome {
+        font-size: 4em;
+        top: 0;
+
+    }
+
+    #welcome-text {
+        font-size: 3vw;
+        width: 90vw;
+        padding: 0;
+        bottom: 0;
+        max-height: 50vh;
+    }
 
     .label {
         font-size: 2em;
@@ -566,7 +910,7 @@ a:hover {
 
 
     .slideshow-container {
-        /* border: 3px solid yellow; */
+
         width: 100%;
         top: 30px;
     }
@@ -574,58 +918,19 @@ a:hover {
     .sidebar-content {
 
         flex-direction: column;
-        /* border: 3px solid red; */
+
     }
 
     .text {
         height: 30vh;
-        /* border: 3px solid green; */
+
         top: 70px;
     }
-    
+
     .text p {
         min-height: fit-content;
         height: 35vh;
-        /* border: 3px solid blueviolet;     */
-    }
-
-}
-
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-/* @media screen and (max-width: 600px) {
-    #welcome {
-        font-size: 30px;
-        font-size: 8vw;
-        font-size: 4em;
-    }
-
-    #welcome-text {
-        width: 96%;
-        font-size: 0.32em;
 
     }
 
-    .icon {
-        width: 300px;
-
-    }
-
-    .icon h2 {
-        font-size: 3.5em;
-    }
-
-    #feketesereg {
-        left: 0;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    #monastery {
-        top: 420px;
-        left: -90px;
-    }
-
-    .sidebar-content {
-        flex-direction: column;
-    }
-}
+} */

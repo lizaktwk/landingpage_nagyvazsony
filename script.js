@@ -14,8 +14,22 @@ function imageCache(base, firstNum, lastNum) {
     }
 }
 
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
-const myCache = new imageCache('./Final-PNGs/', 1, 440);
+// let myCache;
+
+// if (isMobileDevice()) {
+//     console.log("The device is a mobile phone.");
+//     myCache = new imageCache('./Mobile-PNGs/', 1, 440);
+// } else {
+//     console.log("The device is not a mobile phone.");
+//     myCache = new imageCache('./Final-PNGs/', 1, 440);
+// }
+
+
+const myCache = new imageCache('./Web-And-Mobile-PNGs/', 1, 440);
 let currentImageIndex = 0;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
@@ -169,7 +183,7 @@ function scrollEventListener() {
         currentImageIndex = newIndex;
         console.log(currentImageIndex);
         updateImage();
-    }   
+    }
 }
 
 // Add the scroll event listener
@@ -186,9 +200,9 @@ function enableScrollEventListener() {
     window.addEventListener('scroll', scrollEventListener);
 }
 
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};
+// window.onbeforeunload = function () {
+//     window.scrollTo(0, 0);
+// };
 
 function showTableContent(content) {
     let classElement = document.querySelector(`.${content}`);
@@ -216,7 +230,6 @@ let isIconMoved = false;
 function moveIcons(iconCont, iconID) {
     let iconContainer = document.querySelector(`.${iconCont}`);
     let iconIMG = document.querySelector(iconID);
-    let iconParent = iconIMG.parentNode;
 
     if (iconIMG.id === 'feketesereg') {
         if (!isIconMoved) {
