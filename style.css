@@ -560,34 +560,28 @@ a:hover {
     }
 }
 
-
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .welcome {
-        /* border: 3px solid red; */
         flex-wrap: nowrap;
         justify-content: center;
     }
 
     #welcome {
-        /* border: 3px solid blue; */
         font-size: 8vh;
     }
 
     #welcome-text {
-        /* border: 3px solid green; */
         width: 90vw;
         font-size: 3vh;
 
     }
 
-
     #icon-1 {
         width: 40vw;
         left: 0;
         top: -10vh;
-        /* border: 3px solid red; */
+        /* border: 3px solid yellow; */
     }
 
     #icon-2 {
@@ -643,8 +637,8 @@ a:hover {
     .text p {
         height: 45vh;
         min-height: 40vh;
-        /* border: 3px solid blueviolet; */
         font-size: 1.5em;
+        /* border: 3px solid blueviolet; */
     }
 
     a {
@@ -667,6 +661,104 @@ a:hover {
 
 
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+    .welcome {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    #welcome {
+        font-size: 8vh;
+    }
+
+    #welcome-text {
+        width: 90vw;
+        font-size: 3vh;
+
+    }
+
+
+    #icon-1 {
+        width: 40vw;
+        left: 0;
+        top: -10vh;
+        border: 3px solid yellow;
+    }
+
+    #icon-2 {
+        width: 40vw;
+        left: 40vw;
+    }
+
+    #icon-3 {
+        width: 45vw;
+        right: 0;
+    }
+
+    #icon-4 {
+        width: 60vw;
+        left: 40vw;
+    }
+
+    #icon-5 {
+        width: 50vw;
+        top: -5vh;
+    }
+
+    #icon-6 {
+        width: 60vw;
+        left: 40vw;
+    }
+
+    .label {
+        font-size: 5em;
+    }
+
+    .sidebar-content {
+        flex-direction: column;
+    }
+
+    .slideshow-container {
+        width: 70vw;
+    }
+
+
+    .slideshow-container img {
+        padding-right: 0;
+    }
+
+    .text {
+        width: 70vw;
+    }
+
+    .text p {
+        height: 45vh;
+        min-height: 40vh;
+        font-size: 1.5em;
+    }
+
+    a {
+        padding: 24px 32px;
+    }
+
+    .previous {
+        left: -30px;
+        top: 40%;
+    }
+
+    .next {
+        right: -30px;
+        top: 40%;
+    }
+
+    .dots {
+        margin-bottom: 100px;
+    }
+
+} */
+
 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -697,6 +789,7 @@ a:hover {
     #icon-3 {
         width: 25vw;
         right: 0;
+        /* border: 3px solid green; */
         
     }
 
@@ -710,6 +803,7 @@ a:hover {
         width: 30vw;
         right: 0;
         top: -5vh;
+        /* border: 3px solid blue; */
     }
 
     #icon-6 {
@@ -742,7 +836,6 @@ a:hover {
     .text p {
         height: 50vh;
         min-height: 50vh;
-        /* border: 3px solid blue; */
     }
 
     a {
@@ -766,6 +859,95 @@ a:hover {
         width: 25vw;
         right: -5vw;
         /* border: 3px solid red; */
+        top: 5vh;
+    }
+
+    #icon-2 {
+        width: 22vw;
+        left: 65vw;
+        bottom: 10vh;
+        bottom: 20vh;
+        /* border: 3px solid green; */
+    }
+
+    #icon-3 {
+        width: 20vw;
+        right: -3vw;
+        top: 13vh;
+        /* border: 3px solid green; */
+    }
+
+    #icon-4 {
+        width: 30vw;
+        left: 70vw;
+        bottom: 25vh;
+        /* border: 3px solid blue; */
+    }
+
+    #icon-5 {
+        width: 20vw;
+        right: -3vw;
+        top: 0;
+    }
+
+    #icon-6 {
+        width: 25vw;
+        left: 65vw;
+        bottom: 15vh;
+    }
+
+    .label {
+        font-size: 4em;
+    }
+
+    .sidebar-content {
+        flex-direction: row;
+    }
+
+    .slideshow-container {
+        width: 50vw;
+        /* border: 3px solid yellow; */
+    }
+
+    .slideshow-container img {
+        padding-right: 15px;
+    }
+
+    .text {
+        width: fit-content;
+    }
+
+    .text p {
+        height: 50vh;
+        min-height: 50vh;
+        font-size: 2em;
+        font-size: 24px;
+        /* border: 3px solid blue; */
+    }
+
+    a {
+        padding: 8px 16px;
+    }
+
+    .previous {
+        left: 0;
+        top: 50%;
+    }
+
+    .next {
+        right: 0;
+        top: 50%;
+    }
+    
+}
+
+/* Extra extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1400px) {
+    #icon-1 {
+        width: 25vw;
+        right: -5vw;
+        /* border: 3px solid red; */
+        border: 3px solid blue;
     }
 
     #icon-2 {

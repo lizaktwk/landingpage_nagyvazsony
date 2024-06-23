@@ -61,11 +61,11 @@ function updateImage() {
             hideTableContent('icon-container-3');
         }
 
-        if (currentImageIndex === 175 && currentImageIndex < myCache.cache.length) {
+        if (currentImageIndex === 180 && currentImageIndex < myCache.cache.length) {
             cycleImagesForwards();
         }
 
-        if (currentImageIndex === 435) {
+        if (currentImageIndex === 430) {
             cycleImagesBackwards();
         }
     }
