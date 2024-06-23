@@ -14,26 +14,11 @@ function imageCache(base, firstNum, lastNum) {
     }
 }
 
-function isMobileDevice() {
-    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-// let myCache;
-
-// if (isMobileDevice()) {
-//     console.log("The device is a mobile phone.");
-//     myCache = new imageCache('./Mobile-PNGs/', 1, 440);
-// } else {
-//     console.log("The device is not a mobile phone.");
-//     myCache = new imageCache('./Final-PNGs/', 1, 440);
-// }
-
-
 const myCache = new imageCache('./Web-And-Mobile-PNGs/', 1, 440);
 let currentImageIndex = 0;
 
 // Sensitivity factor for the scrolling behaviour (lower value means higher sensitivity)
-let sensitivityFactor = 3;
+let sensitivityFactor = 5;
 
 // Calculate the height of the document based on the number of images
 document.body.style.height = `${(myCache.cache.length - 1) * window.innerHeight / sensitivityFactor}px`;
@@ -100,7 +85,7 @@ function cycleImagesBackwards() {
                 const mainImg = document.getElementById('mainImg');
                 mainImg.src = currentImage.src;
                 mainImg.style.zIndex = 0;
-                currentImageIndex--; // Decrement currentImageIndex for the previous image
+                currentImageIndex--;
                 console.log("currentImageIndex was set to: ", currentImageIndex);
 
                 // Schedule the next image cycle
@@ -109,7 +94,7 @@ function cycleImagesBackwards() {
                 // Wait until the smooth scrolling is complete before re-enabling the scroll event listener
                 setTimeout(() => {
                     enableScrollEventListener();
-                }, 1000); // Adjust the delay if needed
+                }, 1000);
                 console.log("scrolleventlistener enabled");
                 // break out of the function to stop the cycling process
                 return;
@@ -161,7 +146,6 @@ function cycleImagesForwards() {
                     enableScrollEventListener();
                     // print the current image index
                     console.log("currentImageIndex: ", currentImageIndex);
-                    // updateImage();
                 }, 1000); // Adjust the delay if needed
 
                 // break out of the function to stop the cycling process
@@ -200,10 +184,7 @@ function enableScrollEventListener() {
     window.addEventListener('scroll', scrollEventListener);
 }
 
-// window.onbeforeunload = function () {
-//     window.scrollTo(0, 0);
-// };
-
+// Fade in of the table content at a specific image index
 function showTableContent(content) {
     let classElement = document.querySelector(`.${content}`);
     if (classElement) {
@@ -226,71 +207,250 @@ function hideTableContent(content) {
     }
 }
 
+// Prepare the icons to be moved and resized correctly depending on the screen size
+let smallDevices = window.matchMedia("(max-width: 600px)");
+let mediumDevices = window.matchMedia("(min-width: 601px) and (max-width: 991px)");
+let largeDevices = window.matchMedia("(min-width: 992px) and (max-width: 1999px)");
+let extraLargeDevices = window.matchMedia("(min-width: 2000px)");
+
 let isIconMoved = false;
 function moveIcons(iconCont, iconID) {
     let iconContainer = document.querySelector(`.${iconCont}`);
     let iconIMG = document.querySelector(iconID);
+    console.log(iconIMG.id);
+    let leftValue;
+    let widthValue;
+
+    if (smallDevices.matches) {
+        if (iconIMG.id === 'feketesereg') {
+            leftValue = '-1vw';
+            widthValue = '25vw';
+        }
+        if (iconIMG.id === 'monastary') {
+            leftValue = '28vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'community') {
+            leftValue = '9vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'bogracs') {
+            leftValue = '30vw';
+            widthValue = '40vw';
+        }
+        if (iconIMG.id === 'hungarian') {
+            leftValue = '7vw';
+            widthValue = '24vw';
+        }
+        if (iconIMG.id === 'niceBench') {
+            leftValue = '45vw';
+            widthValue = '25vw';
+        }
+
+    } else if (mediumDevices.matches) {
+        if (iconIMG.id === 'feketesereg') {
+            leftValue = '9vw';
+            widthValue = '25vw';
+        }
+        if (iconIMG.id === 'monastary') {
+            leftValue = '28vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'community') {
+            leftValue = '11vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'bogracs') {
+            leftValue = '20vw';
+            widthValue = '40vw';
+        }
+        if (iconIMG.id === 'hungarian') {
+            leftValue = '10vw';
+            widthValue = '22vw';
+        }
+        if (iconIMG.id === 'niceBench') {
+            leftValue = '29vw';
+            widthValue = '22vw';
+        }
+    } 
+    
+    else if (largeDevices.matches) {
+        if (iconIMG.id === 'feketesereg') {
+            leftValue = '9vw';
+            widthValue = '25vw';
+        }
+        if (iconIMG.id === 'monastary') {
+            leftValue = '4vw';
+            widthValue = '18vw';
+        }
+        if (iconIMG.id === 'community') {
+            leftValue = '8vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'bogracs') {
+            leftValue = '-5vw';
+        }
+        if (iconIMG.id === 'hungarian') {
+            leftValue = '8vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'niceBench') {
+            leftValue = '4vw';
+            widthValue = '22vw';
+        }
+    } 
+    
+    else if (extraLargeDevices.matches) {
+        if (iconIMG.id === 'feketesereg') {
+            leftValue = '9vw';
+            widthValue = '25vw';
+        }
+        if (iconIMG.id === 'monastary') {
+            leftValue = '3vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'community') {
+            leftValue = '8vw';
+            widthValue = '20vw';
+        }
+        if (iconIMG.id === 'bogracs') {
+            leftValue = '-5vw';
+            // widthValue = '40vw';
+        }
+        if (iconIMG.id === 'hungarian') {
+            leftValue = '8vw';
+        }
+        if (iconIMG.id === 'niceBench') {
+            leftValue = '4vw';
+            widthValue = '21vw';
+        }
+    }
+
+
 
     if (iconIMG.id === 'feketesereg') {
+        let iconLabel = document.querySelector('#label-feketesereg');
         if (!isIconMoved) {
+            // change the position of the icon container
             iconContainer.style.left = '68vw';
+            // change the width and left position of the icon image
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            // hide the icon label
+            iconLabel.style.display = 'none';
+            // move the sidebar in from the left
             moveSidebar('sidebar-left', 'contentFeketeSereg');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
             moveSidebar('sidebar-left', 'contentFeketeSereg');
         }
     }
 
     else if (iconIMG.id === 'monastary') {
+        let iconLabel = document.querySelector('#label-monastary');
         if (!isIconMoved) {
-            iconContainer.style.left = '-70vw';
+            iconContainer.style.left = '-68vw';
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            iconLabel.style.display = 'none';
             moveSidebar('sidebar-right', 'contentMonastary');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
             moveSidebar('sidebar-right', 'contentMonastary');
         }
 
     }
 
     else if (iconIMG.id === 'community') {
+        let iconLabel = document.querySelector('#label-community');
         if (!isIconMoved) {
             iconContainer.style.left = '68vw';
+            // change the width and left position of the icon image
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            // hide the icon label
+            iconLabel.style.display = 'none';
+            // move the sidebar in from the left
             moveSidebar('sidebar-left', 'contentCommunity');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
             moveSidebar('sidebar-left', 'contentCommunity');
         }
 
     }
 
     else if (iconIMG.id === 'bogracs') {
+        let iconLabel = document.querySelector('#label-bogracs');
         if (!isIconMoved) {
             iconContainer.style.left = '-70vw';
+            // change the width and left position of the icon image
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            // hide the icon label
+            iconLabel.style.display = 'none';
+            // move the sidebar in from the right
             moveSidebar('sidebar-right', 'contentBogracs');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
             moveSidebar('sidebar-right', 'contentBogracs');
         }
 
     }
 
     else if (iconIMG.id === 'hungarian') {
+        let iconLabel = document.querySelector('#label-hungarian');
+        let niceBench = document.querySelector('#niceBench');
         if (!isIconMoved) {
             iconContainer.style.left = '68vw';
+            // change the width and left position of the icon image
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            // hide the icon label
+            iconLabel.style.display = 'none';
+
+            // not a clean solution, but it works for now
+            niceBench.style.left = '6vw';
+            // move the sidebar in from the left
             moveSidebar('sidebar-left', 'contentHungarian');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
+            niceBench.style.left = '';
             moveSidebar('sidebar-left', 'contentHungarian');
         }
 
     }
 
     else if (iconIMG.id === 'niceBench') {
+        let iconLabel = document.querySelector('#label-niceBench');
         if (!isIconMoved) {
             iconContainer.style.left = '-70vw';
+            // change the width and left position of the icon image
+            iconIMG.style.width = widthValue;
+            iconIMG.style.left = leftValue;
+            // hide the icon label
+            iconLabel.style.display = 'none';
+            // move the sidebar in from the right
             moveSidebar('sidebar-right', 'contentNiceBench');
         } else {
             iconContainer.style.left = '0';
+            iconIMG.style.width = '';
+            iconIMG.style.left = '';
+            iconLabel.style.display = 'block';
             moveSidebar('sidebar-right', 'contentNiceBench');
         }
 
@@ -324,7 +484,7 @@ function moveSidebar(sidebar, textID) {
                     console.log("contentFeketeSereg");
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
+                        sidebarContainer.style.left = '-69%'; 
                     } else {
                         sidebarContainer.style.left = '-100%';
                     }
@@ -336,7 +496,7 @@ function moveSidebar(sidebar, textID) {
 
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        sidebarContainer.style.left = '20%'; 
                     } else {
                         sidebarContainer.style.left = '100%';
                     }
@@ -347,7 +507,7 @@ function moveSidebar(sidebar, textID) {
                     console.log("contentCommunity");
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
+                        sidebarContainer.style.left = '-69%'; 
                     } else {
                         sidebarContainer.style.left = '-100%';
                     }
@@ -359,7 +519,7 @@ function moveSidebar(sidebar, textID) {
 
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        sidebarContainer.style.left = '20%'; 
                     } else {
                         sidebarContainer.style.left = '100%';
                     }
@@ -370,7 +530,7 @@ function moveSidebar(sidebar, textID) {
                     console.log("contentHungarian");
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '-69%'; // Adjust as needed (was set to 0 before fade-in-up was added...)
+                        sidebarContainer.style.left = '-69%'; 
                     } else {
                         sidebarContainer.style.left = '-100%';
                     }
@@ -382,7 +542,7 @@ function moveSidebar(sidebar, textID) {
 
                     if (!isSidebarVisible) {
                         sidebarContainer.style.visibility = 'visible';
-                        sidebarContainer.style.left = '20%'; // Adjust as needed
+                        sidebarContainer.style.left = '20%'; 
                     } else {
                         sidebarContainer.style.left = '100%';
                     }
