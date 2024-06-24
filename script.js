@@ -61,15 +61,62 @@ function updateImage() {
             hideTableContent('icon-container-3');
         }
 
-        if (currentImageIndex === 175 && currentImageIndex < myCache.cache.length) {
+        if (currentImageIndex === 180 && currentImageIndex < myCache.cache.length) {
             cycleImagesForwards();
         }
 
-        if (currentImageIndex === 435) {
+        if (currentImageIndex === 380) {
             cycleImagesBackwards();
         }
     }
+}
 
+// Define your scroll event listener function
+function scrollEventListener() {
+    // Calculate the new index based on the scroll position
+    const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
+    if (newIndex !== currentImageIndex) {
+        currentImageIndex = newIndex;
+        console.log(currentImageIndex);
+        updateImage();
+    }
+}
+
+// Add the scroll event listener
+window.addEventListener('scroll', scrollEventListener);
+
+
+// Function to disable the scroll event listener
+function disableScrollEventListener() {
+    window.removeEventListener('scroll', scrollEventListener);
+}
+
+// Function to enable the scroll event listener
+function enableScrollEventListener() {
+    window.addEventListener('scroll', scrollEventListener);
+}
+
+// Fade in of the table content at a specific image index
+function showTableContent(content) {
+    let classElement = document.querySelector(`.${content}`);
+    if (classElement) {
+        classElement.style.visibility = 'visible';
+        classElement.classList.remove('fade-out-down'); // Remove fade-out-down if it's there
+        classElement.classList.add('fade-in-up');
+    }
+}
+
+function hideTableContent(content) {
+    let classElement = document.querySelector(`.${content}`);
+    if (classElement) {
+        classElement.classList.remove('fade-in-up'); // Remove fade-in-up if it's there
+        classElement.classList.add('fade-out-down');
+        // Use a timeout to hide the element after the animation completes
+        setTimeout(() => {
+            classElement.style.visibility = 'hidden';
+            classElement.classList.remove('fade-out-down');
+        }, 500); // 500ms matches the duration of the animation
+    }
 }
 
 function cycleImagesBackwards() {
@@ -157,54 +204,6 @@ function cycleImagesForwards() {
 
     // Start the image cycling process
     cycleNextImage();
-}
-
-// Define your scroll event listener function
-function scrollEventListener() {
-    // Calculate the new index based on the scroll position
-    const newIndex = Math.floor((window.scrollY / window.innerHeight) * sensitivityFactor);
-    if (newIndex !== currentImageIndex) {
-        currentImageIndex = newIndex;
-        console.log(currentImageIndex);
-        updateImage();
-    }
-}
-
-// Add the scroll event listener
-window.addEventListener('scroll', scrollEventListener);
-
-
-// Function to disable the scroll event listener
-function disableScrollEventListener() {
-    window.removeEventListener('scroll', scrollEventListener);
-}
-
-// Function to enable the scroll event listener
-function enableScrollEventListener() {
-    window.addEventListener('scroll', scrollEventListener);
-}
-
-// Fade in of the table content at a specific image index
-function showTableContent(content) {
-    let classElement = document.querySelector(`.${content}`);
-    if (classElement) {
-        classElement.style.visibility = 'visible';
-        classElement.classList.remove('fade-out-down'); // Remove fade-out-down if it's there
-        classElement.classList.add('fade-in-up');
-    }
-}
-
-function hideTableContent(content) {
-    let classElement = document.querySelector(`.${content}`);
-    if (classElement) {
-        classElement.classList.remove('fade-in-up'); // Remove fade-in-up if it's there
-        classElement.classList.add('fade-out-down');
-        // Use a timeout to hide the element after the animation completes
-        setTimeout(() => {
-            classElement.style.visibility = 'hidden';
-            classElement.classList.remove('fade-out-down');
-        }, 500); // 500ms matches the duration of the animation
-    }
 }
 
 // Prepare the icons to be moved and resized correctly depending on the screen size
