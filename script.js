@@ -65,7 +65,7 @@ function updateImage() {
             cycleImagesForwards();
         }
 
-        if (currentImageIndex === 430) {
+        if (currentImageIndex === 380) {
             cycleImagesBackwards();
         }
     }

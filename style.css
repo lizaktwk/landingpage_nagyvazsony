@@ -947,7 +947,7 @@ a:hover {
         width: 25vw;
         right: -5vw;
         /* border: 3px solid red; */
-        border: 3px solid blue;
+        top: 0;
     }
 
     #icon-2 {
