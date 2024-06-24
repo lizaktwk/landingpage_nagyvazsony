@@ -997,7 +997,8 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #D2971A;
+    /* background-color: #D2971A; */
+    background-color:#432c22;
     border-radius: 10px;
 }
 

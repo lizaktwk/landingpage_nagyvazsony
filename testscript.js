@@ -209,8 +209,8 @@ function cycleImagesForwards() {
 // Prepare the icons to be moved and resized correctly depending on the screen size
 let smallDevices = window.matchMedia("(max-width: 600px)");
 let mediumDevices = window.matchMedia("(min-width: 601px) and (max-width: 991px)");
-let largeDevices = window.matchMedia("(min-width: 992px) and (max-width: 1399px)");
-let extraLargeDevices = window.matchMedia("(min-width: 1400px)");
+let largeDevices = window.matchMedia("(min-width: 992px) and (max-width: 1999px)");
+let extraLargeDevices = window.matchMedia("(min-width: 2000px)");
 
 let isIconMoved = false;
 function moveIcons(iconCont, iconID) {
@@ -275,11 +275,11 @@ function moveIcons(iconCont, iconID) {
     
     else if (largeDevices.matches) {
         if (iconIMG.id === 'feketesereg') {
-            leftValue = '4vw';
+            leftValue = '9vw';
             widthValue = '25vw';
         }
         if (iconIMG.id === 'monastary') {
-            leftValue = '-1vw';
+            leftValue = '4vw';
             widthValue = '18vw';
         }
         if (iconIMG.id === 'community') {
