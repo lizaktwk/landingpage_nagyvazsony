@@ -857,16 +857,15 @@ a:hover {
 @media only screen and (min-width: 1200px) {
     #icon-1 {
         width: 25vw;
-        right: -5vw;
-        /* border: 3px solid red; */
+        left: 5vw;
         top: 5vh;
+        /* border: 3px solid red; */
     }
 
     #icon-2 {
         width: 22vw;
-        left: 65vw;
-        bottom: 10vh;
-        bottom: 20vh;
+        left: 70vw;
+        bottom: 28vh;
         /* border: 3px solid green; */
     }
 
